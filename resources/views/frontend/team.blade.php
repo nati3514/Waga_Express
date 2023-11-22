@@ -5,16 +5,12 @@
                 <img class="img-fluid w-100" src="{{ asset('frontend/assets/img/model.webp') }}" alt="">
             </div>
             <div class="col-md-6 wow fadeIn" data-wow-delay="0.5s">
-                <h1 class="display-6 mb-3">Mrs. Martha Yohannes</h1>
+                <h1 class="display-6 mb-3">Mr. Dagmawi Fitsum</h1>
                 <p class="mb-1">CEO & Founder</p>
-                <p class="mb-5">Bole, Addis Ababa</p>
+                <p class="mb-5">22 Street, Addis Ababa</p>
                 <h3 class="mb-3">CEO & Founder</h3>
-                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
-                    iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu
-                    quis, fringilla risus. Pellentesque eu consequat augue.</p>
-                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
-                    iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu
-                    quis, fringilla risus. Pellentesque eu consequat augue.</p>
+                <p class="mb-4">Meet our dynamic CEO and Founder, Dagmawi Fitsum, whose vision drives WagaDHL's commitment to redefining shipping. With a passion for innovation, Dagmawi Fitsum ensures your experience with us is marked by reliability and efficiency..</p>
+                <p class="mb-4">Hear directly from our CEO, Dagmawi Fitsum, on our mission to deliver more than just packages. Building connections and fostering success, Dagmawi Fitsum guides WagaDHL with a commitment to innovation and customer happiness..</p>
                 <div class="d-flex">
                     <a class="btn btn-lg-square btn-primary me-2" href=""><i class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-lg-square btn-primary me-2" href=""><i class="fab fa-twitter"></i></a>
@@ -38,8 +34,8 @@
                         </div>
                     </div>
                     <div class="text-center p-4">
-                        <h5 class="mb-1">Alex Robin</h5>
-                        <span>Lab Assistant</span>
+                        <h5 class="mb-1">Nati Age</h5>
+                        <span>Programmer</span>
                     </div>
                 </div>
             </div>
@@ -57,8 +53,8 @@
                         </div>
                     </div>
                     <div class="text-center p-4">
-                        <h5 class="mb-1">Andrew Bon</h5>
-                        <span>Lab Assistant</span>
+                        <h5 class="mb-1">nati</h5>
+                        <span>frontend developer</span>
                     </div>
                 </div>
             </div>
@@ -76,8 +72,8 @@
                         </div>
                     </div>
                     <div class="text-center p-4">
-                        <h5 class="mb-1">Martin Tompson</h5>
-                        <span>Lab Assistant</span>
+                        <h5 class="mb-1">nati</h5>
+                        <span>backend developer</span>
                     </div>
                 </div>
             </div>
@@ -98,8 +94,8 @@
                         </div>
                     </div>
                     <div class="text-center p-4">
-                        <h5 class="mb-1">Clarabelle Samber</h5>
-                        <span>Lab Assistant</span>
+                        <h5 class="mb-1">Nati</h5>
+                        <span>Ui/Ux designer</span>
                     </div>
                 </div>
             </div>

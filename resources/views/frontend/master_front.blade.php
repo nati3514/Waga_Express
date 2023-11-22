@@ -45,8 +45,8 @@
         <div class="container">
             <div class="d-flex justify-content-between">
                 <div>
-                    <small class="me-3"><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</small>
-                    <small class="me-3"><i class="fa fa-clock me-2"></i>Mon-Sat 09am-5pm, Sun Closed</small>
+                    <small class="me-3"><i class="fa fa-map-marker-alt me-2"></i>22 Street, Addis Abeba, Ethiopia</small>
+                    <small class="me-3"><i class="fa fa-clock me-2"></i>Mon-Sat 2:00am-11:00pm, Sun Closed</small>
                 </div>
 
             </div>

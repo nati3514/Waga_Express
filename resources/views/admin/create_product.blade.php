@@ -53,7 +53,7 @@
 
                                     <div class="col-12 col-md-6  mb-3">
                                         <label for="from_branch" class="col-form-label">{{ 'From-Branch' }}</label>
-                                        <input type="hidden" name="from_branch" value="{{ $firstBranch->id }}">
+                                        <input type="hidden" name="from_branch" id="fromBranch" value="{{ $firstBranch->id }}">
                                         <input type="text" value="{{ $firstBranch->branch_name }}" readonly
                                             class="form-control   @error('from_branch') is-invalid @enderror" type="phone"
                                             id="from_branch">
@@ -175,10 +175,10 @@
                                         class="form-select  @error('package_type') is-invalid @enderror">
                                         <option value="" selected disabled>{{ __('--Select--') }}</option>
                                         <option value="breakable" >
-                                            {{ __('Breakable') }}
+                                            {{ __('fragile') }}
                                         </option>
                                         <option value="unbreakable">
-                                            {{ __('Unbreakable') }}</option>
+                                            {{ __('Unfragile') }}</option>
                                     </select>
                                     @error('package_type')
                                         <span class="invalid-feedback">
@@ -186,7 +186,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="col-12 col-md-3 mb-3">
+                                {{-- <div class="col-12 col-md-3 mb-3"> --}}
                                     {{-- <label for="from_to" class="col-form-label"> <span class="text-danger">*</span>
                                         {{ __('From-To Branch') }}</label>
                                         <select name="from_to" id="from_to"
@@ -212,7 +212,7 @@
                                                 {{ $message }}
                                             </span>
                                         @enderror --}}
-                                       
+{{--                                        
                                             <label for="from_to" class="col-form-label"> <span class="text-danger">*</span>{{ __('From-To Branch') }}</label>
                                             <select name="from_to" id="from_to" class="form-select input-lg dynamic from_to @error('from_to') is-invalid @enderror">
                                                 <option selected disabled value="">{{ __('Select From-To branch') }}</option>
@@ -227,7 +227,7 @@
                                             @enderror
                                         
                                     
-                                </div>
+                                </div> --}}
                                
                                 <div class=" col-md-2  mb-3">
                                     <label for="weight" class="col-form-label"> <span class="text-danger">*</span>
@@ -371,13 +371,20 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var price;
-    $(document).on('change', '.from_to', function(){  
-        var country_id = $(this).val();
+        $(document).on('change', '#to_branch', function(){  
+        var fromId = $('#fromBranch').val();
+        var toId = $(this).val();
+        console.log(fromId);
+        console.log(toId)
         $.ajax({
             type: 'get',
             url:'/fetchPrice',
-            data:{'id':country_id},
+            data: {
+            fromId: fromId,
+            toId: toId
+        },
             success:function(data){
+                console.log(data);
                 price = data.price;
 
                   

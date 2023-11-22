@@ -6,11 +6,8 @@
         <div class="row g-5">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                 <h1 class="display-6 mb-4 text-capitalize">We Ensure You Will Always Get The Best service</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit
-                    eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu quis, fringilla
-                    risus. Pellentesque eu consequat augue.</p>
-                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
-                    iaculis id elit eget, ultrices pulvinar tortor.</p>
+                <p>We guarantee the best service at every step. From our dedicated team to meticulously crafted processes, we prioritize excellence, ensuring your satisfaction is not just met but exceeded. Your trust is our commitment to delivering unparalleled service, where your unique needs are met with passion and precision.</p>
+                <p class="mb-4">Count on us for top-notch service, where excellence is our commitment. Your satisfaction is our priority, ensuring you always receive the best.</p>
                 <div class="d-flex align-items-start wow fadeIn" data-wow-delay="0.3s">
                     <div class="icon-box-primary">
                         <i class="bi bi-geo-alt text-dark fs-1"></i>

@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('city1');
-            $table->string('city2');
+            $table->unsignedBigInteger('fromBranchID');
+            $table->unsignedBigInteger('toBranchID');
+            $table->foreign('fromBranchID')->references('id')->on('branches');
+            $table->foreign('toBranchID')->references('id')->on('branches');
             $table->integer('price');
             $table->timestamps();
         });

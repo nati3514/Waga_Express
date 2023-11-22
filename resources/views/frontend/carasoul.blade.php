@@ -7,11 +7,8 @@
                     <div class="container">
                         <div class="row justify-content-end">
                             <div class="col-lg-7 text-start">
-                                <h1 class="display-1 text-white animated slideInRight mb-3">Award Winning
-                                    Laboratory Center</h1>
-                                <p class="mb-5 animated slideInRight">Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar
-                                    tortor. Quisque vel lorem porttitor, malesuada arcu quis, fringilla risus.</p>
+                                <h1 class="display-1 text-white animated slideInRight mb-3">Welcome to wagaDHL: Your State Shipping Partner! </h1>
+                                <p class="mb-5 animated slideInRight">Ready to experience shipping and logistics like never before? Look no further! At wagaDHL, we bring you the same level of excellence you've come to expect, with a touch of personalized service. Here's why wagaDHL is your top choice:.</p>
                                 <a href="" class="btn btn-primary py-3 px-5 animated slideInRight">Explore
                                     More</a>
                             </div>
@@ -25,11 +22,8 @@
                     <div class="container">
                         <div class="row justify-content-end">
                             <div class="col-lg-7 text-end">
-                                <h1 class="display-1 text-white animated slideInLeft mb-3">Expet Doctors & Lab
-                                    Assistants</h1>
-                                <p class="mb-5 animated slideInLeft">Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar
-                                    tortor. Quisque vel lorem porttitor, malesuada arcu quis, fringilla risus.</p>
+                                <h1 class="display-1 text-white animated slideInLeft mb-3">Delivering Smiles, Not Just Packages</h1>
+                                <p class="mb-5 animated slideInLeft">At wagaDHL, we don't just deliver packages; we deliver happiness. Each shipment is a journey of joy, and we take pride in being a part of your happy moments.</p>
                                 <a href="" class="btn btn-primary py-3 px-5 animated slideInLeft">Explore
                                     More</a>
                             </div>

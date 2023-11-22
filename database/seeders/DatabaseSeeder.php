@@ -187,25 +187,45 @@ class DatabaseSeeder extends Seeder
                 'status'=>'Admin',
             ]);
             Country::create([
-                'city1'=>'Addis Ababa',
-                'city2'=>'Bahir Dar',
+                'fromBranchID'=>1,
+                'toBranchID'=>2,
                 'price'=>300,
             ]);
             Country::create([
-                'city1'=>'Addis Ababa',
-                'city2'=>'Gonder',
-                'price'=>300,
+                'fromBranchID'=>1,
+                'toBranchID'=>3,
+                'price'=>350,
             ]);
             Country::create([
-                'city1'=>'Addis Ababa',
-                'city2'=>'Hawassa',
+                'fromBranchID'=>1,
+                'toBranchID'=>4,
+                'price'=>400,
+            ]);
+            Country::create([
+                'fromBranchID'=>1,
+                'toBranchID'=>5,
+                'price'=>450,
+            ]);
+            Country::create([
+                'fromBranchID'=>1,
+                'toBranchID'=>6,
                 'price'=>500,
             ]);
             Country::create([
-                'city1'=>'Addis Ababa',
-                'city2'=>'Adama',
-                'price'=>700,
-            ]);
-           
+            'fromBranchID'=>1,
+            'toBranchID'=>7,
+            'price'=>550,
+        ]);
+        Country::create([
+            'fromBranchID'=>1,
+            'toBranchID'=>9,
+            'price'=>400,
+        ]);
+        Country::create([
+            'fromBranchID'=>1,
+            'toBranchID'=>10,
+            'price'=>300,
+        ]);
+
     }
 }

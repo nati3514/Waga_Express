@@ -48,9 +48,9 @@ class ProductController extends Controller
         // dd($data);
         // $firstBranch = DB::table('branches')->first();
         $receiversBranch = DB::table('branches')->where('id','<>',$firstBranch->id)->get();
-        $countries = Country::all();
+        // $countries = Country::all();
         $weight = WeightPrice::all();
-        return view('admin.create_product',compact('data', 'firstBranch','receiversBranch','countries','weight'));
+        return view('admin.create_product',compact('data', 'firstBranch','receiversBranch','weight'));
     
     }
 
@@ -70,7 +70,7 @@ class ProductController extends Controller
                 'receiver_phone' => 'required|unique:customers,phone|max:9',
                 'to_branch' => 'required',
                 'receiver_city' => 'required',
-                'from_to' => 'required',
+                // 'from_to' => 'required',
                 'package_type' => 'required',
                 'weight' => 'required',
                 'status' => 'required',
@@ -173,7 +173,10 @@ class ProductController extends Controller
         return redirect(route('products.index'))->with('success', 'successfully deleted');
     }
     public function fetchPrice(Request $request){
-        $distance_price = Country::select('price')->where('id',$request->id)->first();
+        // $distance_price = Country::select('price')->where('id',$request->id)->first();
+        $val1 = $request->fromId;
+        $val2 = $request->toId;
+        $distance_price = Country::select('price')->where([['fromBranchID',$val1],['toBranchID',$val2]])->orWhere([['fromBranchID',$val2],['toBranchID',$val1]])->first();
         return response()->json($distance_price);  
     }
 
