@@ -16,8 +16,8 @@ class StaffController extends Controller
 
         return view('admin.staff.report');
     } 
-
-
+    
+    
     public function index()
     {
         $data = User::all();
@@ -33,7 +33,7 @@ class StaffController extends Controller
     }
 
 
-
+   
     /**
      * Store a newly created resource in storage.
      */

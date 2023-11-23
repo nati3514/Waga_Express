@@ -77,49 +77,49 @@
     <!-- Navbar End -->
 
     <!-- Carousel Start -->
-    @include('frontend.carasoul')
+    {{-- @include('frontend.carasoul') --}}
     <!-- Carousel End -->
 
     <!-- About Start -->
 
-    @include('frontend.about')
+    {{-- @include('frontend.about') --}}
     <!-- About End -->
 
     <!-- Features Start -->
-    @include('frontend.features')
+    {{-- @include('frontend.features') --}}
 
     <!-- Features End -->
 
     <!-- Features 2 Start -->
-    @include('frontend.features2')
+    {{-- @include('frontend.features2') --}}
     <!-- Features 2 End -->
 
     <!-- Video Modal Start -->
 
-    @include('frontend.videomodal')
+    {{-- @include('frontend.videomodal') --}}
     <!-- Video Modal End -->
 
     <!-- Service Start -->
-    @include('frontend.services')
+    {{-- @include('frontend.services') {{-- @include('frontend.services') --}}
     <!-- Service End -->
 
     <!-- Appoinment Start -->
 
-    @include('frontend.appointment')
+    {{-- @include('frontend.appointment') --}}
     <!-- Appoinment Start -->
 
     <!-- Team Start -->
-    @include('frontend.team')
+    {{-- @include('frontend.team') --}}
 
     <!-- Team End -->
 
     <!-- Testimonial Start -->
-    @include('frontend.testimonial')
+    {{-- @include('frontend.testimonial') --}}
 
     <!-- Testimonial End -->
 
     <!-- Footer Start -->
-    @include('frontend.footer')
+    {{-- @include('frontend.footer') --}}
 
     <!-- Footer End -->
 

@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StaffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +37,9 @@ Route::get('/fetchPrice',[App\Http\Controllers\ProductController::class, 'fetchP
 
 Route::delete('/customer/delete/{id}',[App\Http\Controllers\ProductController::class, 'destroy'])->name('delete_customer');
 
-// Route::get('/Staff/staff-list', [App\Http\Controllers\StaffController::class, 'index'])->name('staff.index');
-// Route::get('/Staff/add-staff', [App\Http\Controllers\StaffController::class, 'create'])->name('staff.create');
-// Route::get('/Staff/reports', [App\Http\Controllers\StaffController::class, 'reports'])->name('staff.report');
+Route::get('/Staff/staff-list', [App\Http\Controllers\StaffController::class, 'index'])->name('staff.index');
+Route::get('/Staff/add-staff', [App\Http\Controllers\StaffController::class, 'create'])->name('staff.create');
+Route::get('/Staff/reports', [App\Http\Controllers\StaffController::class, 'reports'])->name('staff.report');
 
 
 

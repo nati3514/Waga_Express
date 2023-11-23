@@ -18,7 +18,7 @@
                     <div class="col-6">
                         <img class="img-fluid" src="{{ asset('frontend/assets/img/AGE_2272.jpg') }}">
                     </div>
-                    {{-- <div class="col-6">
+                    <div class="col-6">
                         <div
                             class="bg-primary w-100 h-100 mt-n5 ms-n5 d-flex flex-column align-items-center justify-content-center">
                             <div class="icon-box-light">
@@ -27,7 +27,7 @@
                             <h1 class="display-1 text-white mb-0" data-toggle="counter-up">25</h1>
                             <small class="fs-5 text-white">Years Experience</small>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
