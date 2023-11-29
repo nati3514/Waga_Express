@@ -26,7 +26,8 @@
                                             <i class="fa-solid fa-money-check-dollar"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>145</h6>
+                                            <h6>{{ $user_data->balance }}birr
+                                            </h6>
 
                                         </div>
                                     </div>
@@ -44,7 +45,7 @@
                                             <i class="fa-solid fa-cubes"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>145</h6>
+                                            <h6>{{ $user_data->Tot_Package }}</h6>
 
                                         </div>
                                     </div>
@@ -62,7 +63,7 @@
                                             <i class="fa-solid fa-briefcase"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>145</h6>
+                                            <h6>{{ $user_data->Tot_commission }}birr</h6>
                                         </div>
                                     </div>
                                 </div>

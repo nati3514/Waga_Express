@@ -131,26 +131,30 @@
                                     @enderror
                                 </div>
 
-                               
-                                <div class="col-12 col-md-6 mb-3">
-                                    <label for="to_branch" class="col-form-label">{{ ('To-Branch') }}</label>
-                                    <input type="text" id="branch_search" class="form-control" placeholder="Search Branch">
-                                    <select name="to_branch" id="to_branch" class="border custom-select @error('to_branch') is-invalid @enderror">
-                                        <option selected disabled value="">{{ ('Select Branch') }}</option>
-                                        @foreach ($receiversBranch as $branch)
-                                            <option value="{{ $branch->id }}" data-city="{{ $branch->city }}">{{ $branch->branch_name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('to_branch')
-                                        <span class="invalid-feedback">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
+                                
+                                <div class="container search_select_box">
+                                    <!-- Include the provided HTML code for the select dropdown with search -->
+                                    <div class="col-12 col-md-6 mb-3 ">
+                                        <label for="to_branch" class="col-form-label">{{ ('To-Branch') }}</label>
+                                        {{-- <input type="text" id="branch_search" class="form-control" placeholder="Search Branch"> --}}
+                                        <input type="hidden" name="to_branch" id="to_branch_hidden" value="">
+                                        <select   data-live-search="true" id="to_branch" class="border custom-select @error('to_branch') is-invalid @enderror">
+                                            <option selected disabled value="">{{ ('Select Branch') }}</option>
+                                            @foreach ($receiversBranch as $branch)
+                                                <option value="{{ $branch->id }}" data-city="{{ $branch->city }}">{{ $branch->branch_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('to_branch')
+                                            <span class="invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
                                 
                                 <div class="col-12 mb-3">
                                     <label for="receiver_city" class="col-form-label"><span class="text-danger">*</span>{{ 'Receiver City' }}</label>
-                                    <textarea name="receiver_city" class="form-control @error('receiver_city') is-invalid @enderror" id="receiver_city" placeholder="Address"readonly></textarea>
+                                    <textarea name="receiver_city" class="form-control @error('receiver_city') is-invalid @enderror" id="receiver_city" placeholder="Address" readonly></textarea>
                                     @error('receiver_city')
                                         <span class="invalid-feedback">
                                             {{ $message }}
@@ -279,6 +283,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         {{-- <button class="btn btn-primary" type="submit">Save</button> --}}
+                        <input type="hidden" name="firstBranch" value="{{ json_encode($firstBranch) }}">
                         <button type="submit" class="btn btn-primary">Save & Print</button>
                     </div>
                 </div>
@@ -290,7 +295,7 @@
     </main>
 
 
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             var branchSelect = document.getElementById('to_branch');
             var branchSearchInput = document.getElementById('branch_search');
@@ -340,7 +345,7 @@
             $('#receiver_city').val(selectedBranch ? selectedBranch.city : '');
         });
     });
-</script>
+</script> --}}
 
 {{-- <script>
     $(document).ready(function () {
@@ -374,6 +379,8 @@
         $(document).on('change', '#to_branch', function(){  
         var fromId = $('#fromBranch').val();
         var toId = $(this).val();
+        var tobranch = document.getElementById('to_branch_hidden');
+        tobranch.value = toId;
         console.log(fromId);
         console.log(toId)
         $.ajax({
@@ -419,6 +426,39 @@
     });
 
 });
+</script>
+
+<script>
+    $(document).ready(function(){
+        // Initialize Bootstrap Select
+        $('#to_branch').selectpicker();
+
+        // Optional: If you want to perform an action when the value changes
+        $('#to_branch').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+            // Access the selected value using $(this).val()
+            console.log('Selected value:', $(this).val());
+        });
+
+        // Optional: If you want to capture the form submission
+        $('form').submit(function(event) {
+            // Access the selected value using $('#to_branch').val()
+            console.log('Selected value to be sent in the request:', $('#to_branch').val());
+            
+            // You can also prevent the form submission if needed
+            // event.preventDefault();
+        });
+    });
+</script>
+
+<script>
+    // Add an event listener to the to_branch dropdown
+    document.getElementById('to_branch').addEventListener('change', function() {
+        // Get the selected option
+        var selectedOption = this.options[this.selectedIndex];
+        
+        // Update the receiver_city textarea with the city from the selected option
+        document.getElementById('receiver_city').value = selectedOption.getAttribute('data-city');
+    });
 </script>
 
       

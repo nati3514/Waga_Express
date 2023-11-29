@@ -26,6 +26,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/myprofile', [App\Http\Controllers\HomeController::class, 'profile'])->name('user.profile');
 Route::get('/product/all_products', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
 Route::get('/product/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
+//Route::get('/product//create-product', [App\Http\Controllers\ProductController::class, 'createProduct'])->name('products.createProduct');
+
+
+
 Route::post('/product/save', [App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
 Route::get('/product/{id}/detail', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
 Route::get('/product/{id}/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');

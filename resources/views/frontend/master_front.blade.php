@@ -77,12 +77,12 @@
     <!-- Navbar End -->
 
     <!-- Carousel Start -->
-    {{-- @include('frontend.carasoul') --}}
+    @include('frontend.carasoul')
     <!-- Carousel End -->
 
     <!-- About Start -->
 
-    {{-- @include('frontend.about') --}}
+    @include('frontend.about')
     <!-- About End -->
 
     <!-- Features Start -->

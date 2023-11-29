@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\customer;
 use App\Models\package;
+use App\Models\branch;
 use App\Models\PackageCategory;
 use App\Models\Product;
 use App\Models\User;
@@ -14,6 +15,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Models\Transaction;
+use App\Models\Percent;
 
 class ProductController extends Controller
 {
@@ -27,7 +30,8 @@ class ProductController extends Controller
         ->join('customers as t2','t2.id','=','packages.receiver_ID')  
         ->join('branches as t3','t3.id','=','packages.from_branch_id')  
         ->join('branches as t4','t4.id','=','packages.to_branch_id')
-        ->select('packages.*','t1.name as sender_name','t1.phone as sender_phone','t1.city as sender_city','t3.branch_name as sender_branch','t2.name as receiver_name','t2.phone as receiver_phone','t2.city as receiver_city','t4.branch_name as receiver_branch')        
+        ->select('packages.*','t1.name as sender_name','t1.phone as sender_phone','t1.city as sender_city','t3.branch_name as sender_branch','t2.name as receiver_name','t2.phone as receiver_phone','t2.city as receiver_city','t4.branch_name as receiver_branch')
+        ->orderBy('packages.created_at', 'desc') // Order by created_at in descending order         
         ->get();
 
         $receiversBranch = DB::table('branches')->get();
@@ -50,9 +54,24 @@ class ProductController extends Controller
         $receiversBranch = DB::table('branches')->where('id','<>',$firstBranch->id)->get();
         // $countries = Country::all();
         $weight = WeightPrice::all();
-        return view('admin.create_product',compact('data', 'firstBranch','receiversBranch','weight'));
+       // return view('admin.dashboard',compact('data', 'firstBranch','receiversBranch','weight'));
+        return view('admin.create_product', compact('data', 'firstBranch', 'receiversBranch', 'weight'));
+        // ->with(['dashboardViewData' => $firstBranch]);
+
     
     }
+
+//     public function createProduct()
+// {
+//     $user = Auth::user();
+//     $firstBranch = User::join('branches','branches.id','=','users.branch_Id')
+//         ->where('users.id',$user->id)
+//         ->first();
+//     $data= DB::table('branches')->get();
+
+//     return view('admin.dashboard', compact('data', 'firstBranch'));
+// }
+
 
     /**
      * Store a newly created resource in storage.
@@ -76,6 +95,8 @@ class ProductController extends Controller
                 'status' => 'required',
                
             ]);
+
+            $price = $request->price;
             $senderInfo = customer::create([
                 'name' => $request->sender_name,
                 'phone' => $request->sender_phone,
@@ -98,13 +119,74 @@ class ProductController extends Controller
                 'to_branch_id' => $request->to_branch,
                 'weight' => $request->weight,
             ]);
+
             
+
+            
+            $user = Auth::user();
+            $senderBranch = User::join('branches','branches.id','=','users.branch_Id')
+            ->where('users.id',$user->id)
+            ->first();
+
+            if ($senderBranch) {
+                $senderBranchId = $senderBranch->id;
+        
+                // Retrieve commission values from the transactions table
+                $transactions = Transaction::where('branch_id_fk', $senderBranchId)
+                    ->where(function ($query) use ($user) {
+                        $query->orWhere('branch_id_fk', $user->branch_Id);
+                    })
+                    ->get();
+
+
+            $status = $package->status;
+            $percentCollected = Percent::where('status',$status)->first();
+            // $percentDelivered = Percent::select('percent')->where('status','delivered')->first();
+            $branchBalance = $senderBranch->balance;
+            // dd($percentCollected->percent);
+            $deduct_amount = ($price * ((100 - $percentCollected->percent)/100));
+            
+            $com_amount = ($price * (($percentCollected->percent)/100));
+            $total = $branchBalance - ($price * ((100 - $percentCollected->percent)/100));
+            
+            $transaction = Transaction::create([
+                'branch_id_fk' => $request->from_branch,
+                'package_id_fk' => $package->id,
+                'percent' => $percentCollected->percent,
+                'price' => $request->price,
+                'Ded_amount' => $deduct_amount,
+                'commission' => $com_amount,
+            ]);
+
+            // Count the number of transactions associated with the authenticated user's branch
+          $transactionCount = Transaction::where('branch_id_fk', $user->branch_Id)
+             ->count();
+
+
+            // Retrieve commission values again including the new transaction
+        $transactions = Transaction::where('branch_id_fk', $senderBranchId)
+        ->where(function ($query) use ($user) {
+            $query->orWhere('branch_id_fk', $user->branch_Id);
+        })
+        ->get();
+
+            // Calculate the sum of commission values
+            $totalCommission = $transactions->sum('commission');
+
+            branch::where('id',$senderBranch->branch_Id)->update([
+                'balance' => $total,
+                'Tot_commission' => $totalCommission,
+                'Tot_package' => $transactionCount,
+            ]);
+        }
+
 
         return redirect(route('products.index'))->with('success', 'Registration successfull');
     }
 
 
-    /**
+
+   /**
      * Display the specified resource.
      */
     public function show(string $id)
@@ -143,26 +225,25 @@ class ProductController extends Controller
             'sender_phone' => 'required|unique:customers,phone,'.$customerID->sender_ID.'|max:9',
             'receiver_name' => 'required',
             'receiver_phone' => 'required|unique:customers,phone,'.$customerID->receiver_ID.'|max:9',
-            // 'to_branch' => 'required',
-            // 'receiver_city' => 'required',
+            'to_branch' => 'required',
+            'receiver_city' => 'required',
         ]);
         $senderID = package::select('sender_ID')->where('id', $id);
         $receiverID = package::select('receiver_ID')->where('id', $id);
-        customer::where('id',$senderID->first())->update([
+        customer::where('id',$senderID)->update([
             'name' => $request->sender_name,
             'phone' => $request->sender_phone,
         ]);
-        customer::where('id',$receiverID->first())->update([
+        customer::where('id',$receiverID)->update([
             'name' => $request->receiver_name,
             'phone' => $request->receiver_phone,
-            // 'city' => $request->receiver_city,
+            'city' => $request->receiver_city,
         ]);
-        // package::where('id',$id)->update([
-        //     'to_branch_id' =>$request->to_branch,
-        // ]);
+        package::where('id',$id)->update([
+            'to_branch_id' =>$request->to_branch,
+        ]);
         return redirect(route('products.index'))->with('success', 'Updated successfully');
     }
-
     /**
      * Remove the specified resource from storage.
      */

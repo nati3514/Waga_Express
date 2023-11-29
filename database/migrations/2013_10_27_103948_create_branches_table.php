@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('state');
             $table->string('country');
             $table->string('contact');
-            $table->string('gps');
+            $table->string('Tot_Package');
             $table->float('balance');
-            $table->integer('parent');
+            $table->integer('Tot_commission');
             $table->string('email');
             $table->date('started_date');
             $table->string('branch_name');
