@@ -54,11 +54,11 @@
 
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>{{ __('Myprofile') }}</h1>
+            <h1>{{ __('My Profile') }}</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item text-capitalize"><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
-                    <li class="breadcrumb-item text-capitalize">{{ __('Myprofile') }}</li>
+                    <li class="breadcrumb-item text-capitalize">{{ __('My Profile') }}</li>
 
                 </ol>
             </nav>
@@ -77,10 +77,11 @@
                                         <div class="mt-3">
                                             <h4>{{ Auth::user()->name }}</h4>
                                             <p class="text-secondary mb-1">{{ Auth::user()->email }}</p>
-                                    <p class="text-secondary mb-1">{{$user_data->branch_name}}</p>
-                                            <p class="text-muted font-size-sm">{{$user_data->status}}</p>
-                                            <button class="btn btn-primary">Follow</button>
-                                            <button class="btn btn-outline-primary">Message</button>
+                                    
+                                            <p class="text-secondary mb-1">{{ $user_data->branch_name }}</p>
+                                            <p class="text-muted font-size-sm">{{ $user_data->status }}</p>
+                                            <button class="btn btn-primary">{{ __('Follow') }}</button>
+                                            <button class="btn btn-outline-primary">{{ __('Message') }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -91,16 +92,16 @@
                                 <div class="card-body pt-3">
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Full Name</h6>
+                                            <h6 class="mb-0">{{ __('Full Name') }}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            {{Auth::user()->name}}
+                                            {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Email</h6>
+                                            <h6 class="mb-0">{{ __('Email') }}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             {{ Auth::user()->email }}
@@ -109,22 +110,22 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Branch</h6>
+                                            <h6 class="mb-0">{{ __('Branch') }}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            {{$user_data->branch_name}}
+                                            {{ $user_data->branch_name }}
                                         </div>
                                     </div>
-                                    <hr>
+                                    {{-- <hr>
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Status</h6>
+                                            <h6 class="mb-0">{{ __('Status') }}</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             {{$user_data->status}}
                                         </div>
                                     </div>
-                                    <hr>
+                                    <hr> --}}
                                   
                                 </div>
                             </div>

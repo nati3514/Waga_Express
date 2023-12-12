@@ -22,11 +22,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::middleware(['auth'])->group(function () {
+
+Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => '\App\Http\Controllers\LanguageController@switchLang']);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/myprofile', [App\Http\Controllers\HomeController::class, 'profile'])->name('user.profile');
 Route::get('/product/all_products', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
 Route::get('/product/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
-//Route::get('/product//create-product', [App\Http\Controllers\ProductController::class, 'createProduct'])->name('products.createProduct');
+
 
 
 
@@ -43,8 +47,18 @@ Route::delete('/customer/delete/{id}',[App\Http\Controllers\ProductController::c
 
 Route::get('/Staff/staff-list', [App\Http\Controllers\StaffController::class, 'index'])->name('staff.index');
 Route::get('/Staff/add-staff', [App\Http\Controllers\StaffController::class, 'create'])->name('staff.create');
+Route::patch('/Staff/update-staff/{id}', [App\Http\Controllers\StaffController::class, 'update'])->name('staff.update');
+Route::delete('/Staff/delete/{id}', [App\Http\Controllers\StaffController::class, 'destroy'])->name('staff.delete');
 Route::get('/Staff/reports', [App\Http\Controllers\StaffController::class, 'reports'])->name('staff.report');
+Route::post('/Staff/save', [App\Http\Controllers\StaffController::class, 'store'])->name('staff.store');
+
+Route::get('/Transacton/payment', [App\Http\Controllers\TranscationController::class, 'index'])->name('transaction.view_deposit');
+Route::get('/Transacton/history', [App\Http\Controllers\TranscationController::class, 'transaction_history'])->name('transaction.view_history');
+
+Route::get('/packages/received-packages/list', [App\Http\Controllers\ProductController::class, 'received_package'])->name('received_package.list');
+Route::get('/receive-packages/{id}', [App\Http\Controllers\ProductController::class, 'receive_package'])->name('receive.package');
 
 
 
 Route::get('/fallback', [App\Http\Controllers\HomeController::class, 'fallback'])->name('fallback');
+});

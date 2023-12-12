@@ -21,28 +21,45 @@
                                 <h5 class="card-title">{{ 'Sender Information' }}</h5>
                                 <div class="row mb-3">
 
-                                    <div class="col-12 col-md-6  mb-3">
-                                        <label for="sender_name" class=" col-form-label"><span
-                                                class="text-danger">*</span>{{ 'Sender Name' }}</label>
-                                        <input name="sender_name" value="{{ old('sender_name') }}"
-                                            class="form-control  @error('sender_name') is-invalid @enderror" type="text"
-                                            placeholder="Isac Newton">
+                                    <div class="container search_select_box">
+                                        <!-- Include the provided HTML code for the select dropdown with search -->
+                                        <div class="col-12 col-md-6 mb-3">
+                                            <label for="customers" class="col-form-label">{{ ('Search Phone_No') }}</label>
+                                            <select data-live-search="true" id="customers" class="border custom-select @error('customers') is-invalid @enderror">
+                                                <option selected disabled value="">{{ ('Search Phone Number') }}</option>
+                                                @foreach ($customers_phone_no as $customer)
+                                            <option value="{{ $customer->id }}" data-name="{{ $customer->name }}" data-phone="{{ $customer->phone }}">{{ $customer->phone }}</option>
+                                              @endforeach
+
+                                            </select>
+                                            @error('customers')
+                                                <span class="invalid-feedback">
+                                                    {{ $message }}
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <label for="sender_name" class="col-form-label"><span class="text-danger">*</span>{{ 'Sender Name' }}</label>
+                                        <input name="sender_name" id="sender_name" value="{{ old('sender_name') }}" class="form-control @error('sender_name') is-invalid @enderror" type="text" placeholder="Isac Newton">
                                         @error('sender_name')
                                             <span class="invalid-feedback">
                                                 {{ $message }}
                                             </span>
                                         @enderror
                                     </div>
+                                    
 
-                                    <div class="col-12 col-md-6  mb-3 ">
-                                        <label for="sender_phone" class=" col-form-label"><span
-                                                class="text-danger">*</span>{{ 'Sender Phone' }}</label>
-                                        <div class=" input-group">
+                                    <!-- Your input for sender phone -->
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <label for="sender_phone" class="col-form-label"><span class="text-danger">*</span>{{ 'Sender Phone' }}</label>
+                                        <div class="input-group">
                                             <span class="input-group-text" id="basic-addon1">+251</span>
-                                            <input name="sender_phone"value="{{ old('sender_phone') }}"
-                                                class="form-control   @error('sender_phone') is-invalid @enderror"
-                                                type="number" id="sender_phone" aria-label="sender_phone"
-                                                aria-describedby="basic-addon1" placeholder="911******   ">
+                                            <input name="sender_phone" value="{{ old('sender_phone') }}"
+                                                class="form-control @error('sender_phone') is-invalid @enderror"
+                                                type="text" id="sender_phone" aria-label="sender_phone"
+                                                aria-describedby="basic-addon1" placeholder="911******">
                                         </div>
                                         @error('sender_phone')
                                             <span class="invalid-feedback">
@@ -450,6 +467,7 @@
     });
 </script>
 
+
 <script>
     // Add an event listener to the to_branch dropdown
     document.getElementById('to_branch').addEventListener('change', function() {
@@ -459,7 +477,49 @@
         // Update the receiver_city textarea with the city from the selected option
         document.getElementById('receiver_city').value = selectedOption.getAttribute('data-city');
     });
+    
 </script>
+
+<script>
+    $(document).ready(function () {
+        // Initialize Bootstrap Select
+        $('#customers').selectpicker();
+
+        // Optional: If you want to perform an action when the value changes
+        $('#customers').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+            // Access the selected value using $(this).val()
+            console.log('Selected value:', $(this).val());
+        });
+
+        // Optional: If you want to capture the form submission
+        $('form').submit(function (event) {
+            // Access the selected value using $('#customers').val()
+            console.log('Selected value to be sent in the request:', $('#customers').val());
+
+            // You can also prevent the form submission if needed
+            // event.preventDefault();
+        });
+    });
+
+    // Add an event listener to the customers dropdown
+    $('#customers').change(function () {
+        // Get the selected option
+        var selectedOption = this.options[this.selectedIndex];
+
+        // Update the sender_name input with the name from the selected option
+        $('#sender_name').val(selectedOption.getAttribute('data-name'));
+    });
+
+     // Add an event listener to the customers dropdown
+     document.getElementById('customers').addEventListener('change', function() {
+        // Get the selected option
+        var selectedOption = this.options[this.selectedIndex];
+
+        // Update the sender_phone input with the phone number from the selected option
+        document.getElementById('sender_phone').value = selectedOption.getAttribute('data-phone');
+    });
+</script>
+
 
       
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -486,4 +546,16 @@
             toastr.error(" Error! <br> {{ Session::get('error') }}  ");
         </script>
     @endif
+    <script>
+        // Add this script to display Toastr notification for sender_phone validation error
+        @if ($errors->has('sender_phone'))
+            toastr.error("{{ $errors->first('sender_phone') }}");
+        @endif
+
+        // Toastr notification for receiver_phone validation error
+     @if ($errors->has('receiver_phone'))
+         toastr.error("{{ $errors->first('receiver_phone') }}");
+     @endif
+    </script>
+     
 @endsection

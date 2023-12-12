@@ -5,8 +5,8 @@
             <h1>Dashboard</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item"><a href="index.html">{{ __('Home') }}</a></li>
+                    <li class="breadcrumb-item active">{{ __('Dashboard') }}</li>
                 </ol>
             </nav>
         </div>
@@ -19,7 +19,7 @@
                             <div class="card info-card sales-card">
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Balance</h5>
+                                    <h5 class="card-title">{{ __('Balance') }}</h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -38,14 +38,14 @@
                             <div class="card info-card sales-card">
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Total Package</h5>
+                                    <h5 class="card-title">{{ __('Total Package') }}</h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                             <i class="fa-solid fa-cubes"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>{{ $user_data->Tot_Package }}</h6>
+                                            <h6>{{ $total_packages }}</h6>
 
                                         </div>
                                     </div>
@@ -56,7 +56,7 @@
                             <div class="card info-card sales-card">
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Total Comission</h5>
+                                    <h5 class="card-title">{{ __('Total Comission') }}</h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -80,7 +80,7 @@
                                             <i class="fa-solid fa-box"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>145</h6>
+                                            <h6>{{ $count_collected_packages }}</h6>
                                         </div>
 
                                     </div>
@@ -90,14 +90,14 @@
                         <div class="col-xxl-2 col-md-4">
                             <div class="card info-card revenue-card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Delivered</h5>
+                                    <h5 class="card-title">{{ __('Delivered') }}</h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                             <i class="fa-solid fa-truck-fast"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>145</h6>
+                                            <h6>{{ $count_delivered_packages }}</h6>
                                         </div>
                                     </div>
                                 </div>

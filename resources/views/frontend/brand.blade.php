@@ -8,12 +8,12 @@
                     <span>+251 9866 4047</span>
                 </div>
             </div>
-            <a href="index.html" class="h1 text-white mb-0">Waga<span class="text-dark">DHL</span></a>
+            <a href="index.html" class="h1 text-white mb-0">Waga<span class="text-dark">Express</span></a>
             <div class="d-flex">
                 <i class="bi bi-envelope fs-2"></i>
                 <div class="ms-3">
                     <h5 class="text-white mb-0">Mail Now</h5>
-                    <span>WagaDHL@express.com</span>
+                    <span>Wagaexpress@gmail.com</span>
                 </div>
             </div>
         </div>

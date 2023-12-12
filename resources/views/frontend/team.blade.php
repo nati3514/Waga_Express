@@ -9,8 +9,8 @@
                 <p class="mb-1">CEO & Founder</p>
                 <p class="mb-5">22 Street, Addis Ababa</p>
                 <h3 class="mb-3">CEO & Founder</h3>
-                <p class="mb-4">Meet our dynamic CEO and Founder, Dagmawi Fitsum, whose vision drives WagaDHL's commitment to redefining shipping. With a passion for innovation, Dagmawi Fitsum ensures your experience with us is marked by reliability and efficiency..</p>
-                <p class="mb-4">Hear directly from our CEO, Dagmawi Fitsum, on our mission to deliver more than just packages. Building connections and fostering success, Dagmawi Fitsum guides WagaDHL with a commitment to innovation and customer happiness..</p>
+                <p class="mb-4">Meet our dynamic CEO and Founder, Dagmawi Fitsum, whose vision drives WagaExpress's commitment to redefining shipping. With a passion for innovation, Dagmawi Fitsum ensures your experience with us is marked by reliability and efficiency..</p>
+                <p class="mb-4">Hear directly from our CEO, Dagmawi Fitsum, on our mission to deliver more than just packages. Building connections and fostering success, Dagmawi Fitsum guides WagaExpress with a commitment to innovation and customer happiness..</p>
                 <div class="d-flex">
                     <a class="btn btn-lg-square btn-primary me-2" href=""><i class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-lg-square btn-primary me-2" href=""><i class="fab fa-twitter"></i></a>

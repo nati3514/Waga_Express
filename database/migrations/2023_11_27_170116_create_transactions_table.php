@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('branch_id_fk');
             $table->unsignedBigInteger('package_id_fk');
+            $table->string('status');
             $table->integer('percent');
             $table->float('price');
-            $table->integer('Ded_amount');
-            $table->integer('commission');
+            $table->float('Ded_amount');
+            $table->float('commission');
+            $table->float('current_balance');
             $table->foreign('branch_id_fk')->references('id')->on('branches');
             $table->foreign('package_id_fk')->references('id')->on('packages');
             $table->timestamps();

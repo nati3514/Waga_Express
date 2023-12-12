@@ -53,12 +53,11 @@
         </div>
 
         @if (Route::has('login'))
-            <div class="">
+        <div class="flex ">
                 @auth
                     <a href="{{ url('/home') }}" class="px-3">Home</a>
                 @else
-                    <a href="{{ route('login') }}" class="">Log
-                        in</a>
+                <a href="{{ route('login') }}" class="">Login</a>
 
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="px-3">Signup</a>
@@ -105,11 +104,11 @@
 
     <!-- Appoinment Start -->
 
-    {{-- @include('frontend.appointment') --}}
+    @include('frontend.appointment')
     <!-- Appoinment Start -->
 
     <!-- Team Start -->
-    {{-- @include('frontend.team') --}}
+    @include('frontend.team')
 
     <!-- Team End -->
 

@@ -11,6 +11,8 @@ use App\Models\Country;
 use App\Models\PackageCategory;
 use App\Models\WeightPrice;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -173,20 +175,7 @@ class DatabaseSeeder extends Seeder
                 'rate'=>2.5,
             ]);
            
-            User::create([
-                'branch_Id'=>1,
-                'name'=>'nati',
-                'email'=>'natiage@gmail.com',
-                'password'=>'12345678',
-                'status'=>'Admin',
-            ]);
-            User::create([
-                'branch_Id'=>2,
-                'name'=>'dagi',
-                'email'=>'dagi@gmail.com',
-                'password'=>'12345678',
-                'status'=>'Admin',
-            ]);
+            
             Country::create([
                 'fromBranchID'=>1,
                 'toBranchID'=>2,
@@ -235,6 +224,65 @@ class DatabaseSeeder extends Seeder
             'status'=>'delivered',
             'percent'=>20,
         ]);
+
+        $superAdmin = User::create([
+            'branch_Id'=>2,
+            'first_name'=>'dagi',
+            'last_name'=>'dagi',
+            'email'=>'dagi@gmail.com',
+            'password'=>'12345678',
+        ]);
+        $Admin = User::create([
+            'branch_Id'=>1,
+            'first_name'=>'nati',
+            'last_name'=>'age',
+            'email'=>'natiage@gmail.com',
+            'password'=>'12345678',
+        ]);
+        $cashier = User::create([
+            'branch_Id'=>3,
+            'first_name'=>'noya',
+            'last_name'=>'tad',
+            'email'=>'noya@gmail.com',
+            'password'=>'12345678',
+        ]);
+        $superAdmin_role = Role::create(['name' => 'superAdmin']);
+        $admin_role = Role::create(['name' => 'admin']);
+        $cashier_role = Role::create(['name' => 'cashier']);
+        
+        Permission::create(['name' => 'Packages access']);
+        Permission::create(['name' => 'Packages add']);
+        Permission::create(['name' => 'Packages edit']);
+        Permission::create(['name' => 'Packages delete']);
+        Permission::create(['name' => 'Staff access']);
+        Permission::create(['name' => 'Staff add']);
+        Permission::create(['name' => 'Staff edit']);
+        Permission::create(['name' => 'Staff delete']);
+
+        $superAdminPermissions = [
+            'Staff access',
+            'Staff add',
+            'Staff edit',
+            'Staff delete',
+        ];
+        $adminPermissions =[
+            'Staff access',
+            'Staff add',
+            'Staff edit',
+            'Staff delete',
+        ];
+        $cashierPermissions = [
+            'Packages access',
+            'Packages add',
+            'Packages edit',
+            'Packages delete',
+        ];
+
+        $superAdmin_role -> givePermissionTo($superAdminPermissions);
+        $admin_role -> givePermissionTo($adminPermissions);
+        $cashier_role -> givePermissionTo($cashierPermissions);
+        $Admin->assignRole($admin_role);
+        $cashier->assignRole($cashier_role);
 
     }
 }

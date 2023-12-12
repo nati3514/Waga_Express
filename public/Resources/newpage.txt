@@ -3,15 +3,19 @@
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>{{ __('Product Detail ') }}</h1>
+            <h1>{{ __('New Page') }}</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item text-capitalize"><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
                     <li class="breadcrumb-item text-capitalize">{{ __(' Products Detail') }}</li>
+                     <li class="breadcrumb-item text-capitalize">{{ __(' New Page') }}</li>
 
                 </ol>
             </nav>
         </div>
         <section class="section ">
+
+        <h1>New Page Content List</h1>
     
         </section>
     </main>

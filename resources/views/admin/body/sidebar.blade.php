@@ -13,7 +13,8 @@
         {{-- //////////////////////////////////// --}}
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Packages</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-journal-text"></i><span>{{ __('Packages') }}</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -34,9 +35,12 @@
                     </a></li> --}}
             </ul>
         </li>
+        @can('Staff access')
+                   
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-staff" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Staff</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-journal-text"></i><span>{{ __('Staff') }}</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="forms-staff" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -57,6 +61,44 @@
                         <i class="bi bi-grid"></i> <span>{{ __('Reports') }}</span>
                     </a>
                 </li>
+            </ul>
+        </li>
+        @endcan
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#transaction" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-journal-text"></i><span>{{ __('Transaction') }}</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="transaction" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a class="nav-link {{ $routeName == 'transaction.view_deposit' ? 'active' : '' }} "
+                        href="{{ route('transaction.view_deposit') }}">
+                        <i class="bi bi-grid"></i> <span>{{ __('Deposit') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link {{ $routeName == 'transaction.view_history' ? 'active' : '' }} "
+                        href="{{ route('transaction.view_history') }}">
+                        <i class="bi bi-grid"></i> <span>{{ __('Transaction History') }}</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#Received_package_list" data-bs-toggle="collapse"
+                href="#">
+                <i class="bi bi-journal-text"></i><span>{{ __('Received Packages') }}</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="Received_package_list" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a class="nav-link {{ $routeName == 'transaction.view_deposit' ? 'active' : '' }} "
+                        href="{{ route('received_package.list') }}">
+                        <i class="bi bi-grid"></i> <span>{{ __('Received Package List') }}</span>
+                    </a>
+                </li>
+
             </ul>
         </li>
 

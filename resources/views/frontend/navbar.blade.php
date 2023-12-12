@@ -2,7 +2,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-white py-lg-0 px-lg-3">
             <a href="index.html" class="navbar-brand d-lg-none">
-                <h1 class="text-primary m-0">Waga<span class="text-dark">DHL</span></h1>
+                <h1 class="text-primary m-0">Waga<span class="text-dark">Express</span></h1>
             </a>
             <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>

@@ -60,7 +60,7 @@
 
                                     </div>
                                     <div class="col-12 col-md-1 mt-4">
-                                        <button class="btn btn-sm btn-primary">View Report</button>
+                                        <button class="btn btn-sm btn-primary">{{ __('View Report') }}</button>
                                     </div>
                                 </div>
                             </form>
@@ -77,10 +77,9 @@
 
                                     <thead class="text-capitalize">
                                         <tr>
-                                            <th scope="col">{{ __('#') }}</th>
-                                            <th scope="col">{{ __('Date ') }}</th>
-                                            <th scope="col">{{ __('Sender ') }}</th>
-                                            <th scope="col">{{ __('Recepient ') }}</th>
+                                            <th scope="col">{{ __('Date') }}</th>
+                                            <th scope="col">{{ __('Sender') }}</th>
+                                            <th scope="col">{{ __('Recepient') }}</th>
                                             <th scope="col">{{ __('Amount') }}</th>
                                             <th scope="col">{{ __('Status') }}</th>
 

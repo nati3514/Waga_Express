@@ -5,13 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class StaffController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-
+    function __construct()
+    {
+        $this->middleware('role_or_permission:Staff access|Staff add|Staff edit|Staff delete', ['only' => ['index','show']]);
+        $this->middleware('role_or_permission:Staff add', ['only' => ['create','store']]);
+        $this->middleware('role_or_permission:Staff edit', ['only' => ['edit','update']]);
+        $this->middleware('role_or_permission:Staff delete', ['only' => ['destroy']]);
+    }
      public function reports(){
 
         return view('admin.staff.report');
@@ -20,7 +27,8 @@ class StaffController extends Controller
     
     public function index()
     {
-        $data = User::all();
+        $user = Auth::user();
+        $data = User::where('branch_Id',$user->branch_Id)->role('cashier')->get();
         return view('admin.staff.view_all_staff',compact('data'));  
     }
 
@@ -29,7 +37,11 @@ class StaffController extends Controller
      */
     public function create()
     {
-        return view('admin.staff.create_staff');  
+        $user = Auth::user();
+        $branch = User::join('branches','branches.id','=','users.branch_Id')
+        ->where('users.id',$user->id)
+        ->first();
+    return view('admin.staff.create_staff', compact('branch'));  
     }
 
 
@@ -39,7 +51,22 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'from_branch' => 'required',
+            'email' => 'required|email|unique:users,email|max:50',
+            'password' => 'required',
+        ]);
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'branch_Id' => $request->from_branch,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+        $user->syncRoles('cashier');
+        return redirect(route('staff.index'))->with('success', 'Staff successfully added');
     }
 
     /**
@@ -63,7 +90,19 @@ class StaffController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id.'|max:50',
+            'password' => 'required',
+        ]);
+        User::where('id', $id)->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => bcrypt($request->first_name),
+        ]);
+        return redirect(route('staff.index'))->with('success', 'Updated successfully');
     }
 
     /**
@@ -71,6 +110,7 @@ class StaffController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::where('id', $id)->delete();
+        return redirect(route('staff.index'))->with('success', 'successfully deleted');
     }
 }

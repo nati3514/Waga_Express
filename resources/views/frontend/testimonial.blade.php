@@ -28,7 +28,7 @@
                             <div class="icon-box-primary mb-4">
                                 <i class="bi bi-chat-left-quote text-dark"></i>
                             </div>
-                            <p class="fs-5 mb-4">WagaDHL has truly set the standard for excellence in shipping. Their attention to detail and commitment to secure packaging give me peace of mind with every shipment. The team's responsiveness and dedication to customer support make them stand out. WagaDHL is a game-changer in the logistics industry!
+                            <p class="fs-5 mb-4">WagaExpres has truly set the standard for excellence in shipping. Their attention to detail and commitment to secure packaging give me peace of mind with every shipment. The team's responsiveness and dedication to customer support make them stand out. WagaDHL is a game-changer in the logistics industry!
                             </p>
                             <div class="d-flex align-items-center">
                                 <img class="flex-shrink-0" src="{{ asset('frontend/assets/img/testimonial-2.jpg') }}"
