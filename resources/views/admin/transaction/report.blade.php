@@ -34,27 +34,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                    <div class="container search_select_box">
-                                        <!-- Include the provided HTML code for the select dropdown with search -->
-                                        <div class="col-12 col-md-6 mb-3 ">
-                                            <label for="to_branch" class="col-form-label">{{ ('To-Branch') }}</label>
-                                            {{-- <input type="text" id="branch_search" class="form-control" placeholder="Search Branch"> --}}
-                                            <input type="hidden" name="to_branch" id="to_branch_hidden" value="">
-                                            <select   data-live-search="true" id="to_branch" class="border custom-select @error('to_branch') is-invalid @enderror">
-                                                <option selected disabled value="">{{ ('Select Branch') }}</option>
-                                                @foreach ($receiversBranch as $branch)
-                                                    <option value="{{ $branch->id }}" data-city="{{ $branch->city }}">{{ $branch->branch_name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('to_branch')
-                                                <span class="invalid-feedback">
-                                                    {{ $message }}
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
                                     
-
                                     <div class="col-12 col-md-3  mb-3">
                                         <label for="from" class=" col-form-label">{{ __('From:') }}</label>
                                         <input name="from" value="{{ old('from') }}"
