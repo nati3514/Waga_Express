@@ -18,11 +18,8 @@ class StaffController extends Controller
         $this->middleware('role_or_permission:Staff add', ['only' => ['create','store']]);
         $this->middleware('role_or_permission:Staff edit', ['only' => ['edit','update']]);
         $this->middleware('role_or_permission:Staff delete', ['only' => ['destroy']]);
+        
     }
-     public function reports(){
-
-        return view('admin.staff.report');
-    } 
     
     
     public function index()
@@ -57,6 +54,7 @@ class StaffController extends Controller
             'from_branch' => 'required',
             'email' => 'required|email|unique:users,email|max:50',
             'password' => 'required',
+            'amount_limit' => 'required',
         ]);
         $user = User::create([
             'first_name' => $request->first_name,
@@ -64,6 +62,7 @@ class StaffController extends Controller
             'branch_Id' => $request->from_branch,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'amount_limit' => $request->amount_limit,
         ]);
         $user->syncRoles('cashier');
         return redirect(route('staff.index'))->with('success', 'Staff successfully added');
@@ -95,12 +94,14 @@ class StaffController extends Controller
             'last_name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id.'|max:50',
             'password' => 'required',
+            'amount_limit' => 'required',
         ]);
         User::where('id', $id)->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'password' => bcrypt($request->first_name),
+            'password' => bcrypt($request->password),
+            'amount_limit' => $request->amount_limit,
         ]);
         return redirect(route('staff.index'))->with('success', 'Updated successfully');
     }

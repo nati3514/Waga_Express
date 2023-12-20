@@ -13,7 +13,37 @@ class TranscationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+     public function reports(){
+
+        $user = Auth::user();
+    //     $usersWithSameBranch = User::where('branch_id', $user->branch_Id)
+    // ->get(['first_name']);
+
+
+    //     dd($usersWithSameBranch);
+
+        If(Auth::user()->hasRole ('admin')){
+        // dd($user->id);
+        $data = Transaction::where('branch_id_fk', $user->branch_Id)->with('user')
+       ->orderBy('created_at', 'desc')
+       ->get();
+        
+       return view('admin.transaction.report', compact('data'));
+        }
+        If(Auth::user()->hasRole ('cashier')){
+            // dd($user->id);
+            $data = Transaction::where('user_id_fk', $user->id)->with('user')
+           ->orderBy('created_at', 'desc')
+           ->get();
+    
+    
+            
+           return view('admin.transaction.report', compact('data'));
+            }
+            return view('admin.transaction.report', compact('data'));
+    } 
+     public function index()
     {
         
         $data = User::all();
@@ -22,12 +52,26 @@ class TranscationController extends Controller
     public function transaction_history()
     {
         $user = Auth::user();
-        $data = Transaction::where('branch_id_fk', $user->branch_Id)
+        If(Auth::user()->hasRole ('admin')){
+        // dd($user->id);
+        $data = Transaction::where('branch_id_fk', $user->branch_Id)->with('user')
        ->orderBy('created_at', 'desc')
        ->get();
 
+
         
         return view('admin.transaction.view_transcation_history', compact('data'));
+        }
+        If(Auth::user()->hasRole ('cashier')){
+            // dd($user->id);
+            $data = Transaction::where('user_id_fk', $user->id)->with('user')
+           ->orderBy('created_at', 'desc')
+           ->get();
+    
+    
+            
+            return view('admin.transaction.view_transcation_history', compact('data'));
+            }
     }
 
     /**

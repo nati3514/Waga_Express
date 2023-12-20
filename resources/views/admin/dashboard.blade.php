@@ -26,7 +26,7 @@
                                             <i class="fa-solid fa-money-check-dollar"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>{{ $user_data->balance }}birr
+                                            <h6>{{ $user_data->balance }}ETB
                                             </h6>
 
                                         </div>
@@ -52,6 +52,7 @@
                                 </div>
                             </div>
                         </div>
+                        @can('Staff access')
                         <div class="col-xxl-2 col-md-4">
                             <div class="card info-card sales-card">
 
@@ -69,6 +70,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endcan
                         <div class="col-xxl-2 col-md-4">
                             <div class="card info-card revenue-card">
 
@@ -103,7 +105,24 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-xxl-2 col-md-4">
+                            <div class="card info-card revenue-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ __('Daily Collected Cash') }}</h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="fa-solid fa-truck-fast"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>{{ $total_price }}ETB</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {{-- Graph --}}
+                        @can('Staff access')
                         <div class="col-12">
                             <div class="card">
                                 <div class="filter">
@@ -178,6 +197,7 @@
                                         });
                                     </script>
                                 </div>
+                                @endcan
                             </div>
                         </div>
 
@@ -188,3 +208,4 @@
         </section>
     </main>
 @endsection
+

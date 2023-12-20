@@ -49,11 +49,11 @@ Route::get('/Staff/staff-list', [App\Http\Controllers\StaffController::class, 'i
 Route::get('/Staff/add-staff', [App\Http\Controllers\StaffController::class, 'create'])->name('staff.create');
 Route::patch('/Staff/update-staff/{id}', [App\Http\Controllers\StaffController::class, 'update'])->name('staff.update');
 Route::delete('/Staff/delete/{id}', [App\Http\Controllers\StaffController::class, 'destroy'])->name('staff.delete');
-Route::get('/Staff/reports', [App\Http\Controllers\StaffController::class, 'reports'])->name('staff.report');
 Route::post('/Staff/save', [App\Http\Controllers\StaffController::class, 'store'])->name('staff.store');
 
 Route::get('/Transacton/payment', [App\Http\Controllers\TranscationController::class, 'index'])->name('transaction.view_deposit');
 Route::get('/Transacton/history', [App\Http\Controllers\TranscationController::class, 'transaction_history'])->name('transaction.view_history');
+Route::get('/Transaction/reports', [App\Http\Controllers\TranscationController::class, 'reports'])->name('transaction.report');
 
 Route::get('/packages/received-packages/list', [App\Http\Controllers\ProductController::class, 'received_package'])->name('received_package.list');
 Route::get('/receive-packages/{id}', [App\Http\Controllers\ProductController::class, 'receive_package'])->name('receive.package');

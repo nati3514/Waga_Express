@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('branch_id_fk');
             $table->unsignedBigInteger('package_id_fk');
+            $table->unsignedBigInteger('user_id_fk');
             $table->string('status');
             $table->integer('percent');
             $table->float('price');
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->float('current_balance');
             $table->foreign('branch_id_fk')->references('id')->on('branches');
             $table->foreign('package_id_fk')->references('id')->on('packages');
+            $table->foreign('user_id_fk')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\package;
+use App\Models\Transaction;
+use Illuminate\Support\Carbon;
 
 
 
@@ -33,7 +35,21 @@ class HomeController extends Controller
         $data = User::join('branches', 'branches.id', '=', 'users.branch_Id')
             ->where('users.id', $user->id)
             ->first();
+            
+        If(Auth::user()->hasRole ('admin')) {
             if ($data) {
+                $dataId = $data->id;
+
+
+                $currentDate = Carbon::now()->format('Y-m-d');
+
+                $totalPrice = Transaction::where(function ($query) use ($user, $dataId) {
+                    $query->where('branch_id_fk', $dataId)
+                          ->orWhere('branch_id_fk', $user->branch_Id);
+                    })
+                    ->whereDate('created_at', $currentDate)
+                    ->sum('price');       
+                // dd($totalPrice);
                 $countCollectedPackages = Package::where('from_branch_id', $data->branch_Id)
                     ->where(function ($query) use ($user) {
                         $query->orWhere('from_branch_id', $user->branch_Id);
@@ -41,6 +57,30 @@ class HomeController extends Controller
                     ->where('status', 'collected')
                     ->count();
             }
+        }
+        If(Auth::user()->hasRole ('cashier')) {
+            if ($data) {
+                $dataId = $data->id;
+
+
+                $currentDate = Carbon::now()->format('Y-m-d');
+
+                $totalPrice = Transaction::where(function ($query) use ($user, $dataId) {
+                    $query->where('branch_id_fk', $dataId)
+                          ->orWhere('branch_id_fk', $user->branch_Id);
+                    })
+                    ->where('user_id_fk', $user->id) // Additional condition for the authenticated user
+                    ->whereDate('created_at', $currentDate)
+                    ->sum('price');       
+                // dd($totalPrice);
+                $countCollectedPackages = Package::where('from_branch_id', $data->branch_Id)
+                    ->where(function ($query) use ($user) {
+                        $query->orWhere('from_branch_id', $user->branch_Id);
+                    })
+                    ->where('status', 'collected')
+                    ->count();
+            }
+        }
             $countDeliveredPackages = Package::where('from_branch_id', $data->branch_Id)
              ->where(function ($query) use ($user) {
                  $query->orWhere('from_branch_id', $user->branch_Id);
@@ -56,7 +96,8 @@ class HomeController extends Controller
         return view('admin.dashboard')->with('user_data', $data)
         ->with('count_collected_packages', $countCollectedPackages)
         ->with('count_delivered_packages', $countDeliveredPackages)
-        ->with('total_packages', $totalCountPackages);
+        ->with('total_packages', $totalCountPackages)
+        ->with('total_price', $totalPrice);
         
     }
     public function profile()
@@ -73,3 +114,4 @@ class HomeController extends Controller
         return view('admin.fallback');
     }
 }
+

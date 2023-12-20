@@ -25,7 +25,8 @@
                                         <th scope="col">{{ __('Package Price') }}</th>
                                         <th scope="col">{{ __('Ded_amount') }}</th>
                                         <th scope="col">{{ __('Commission') }}</th>
-                                        <th scope="col">{{ __('Current Balance') }}</th>    
+                                        <th scope="col">{{ __('Closing Balance') }}</th>
+                                        <th scope="col">{{ __('Transaction Done By') }}</th>        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,6 +49,7 @@
                                             <td>-{{ $data->Ded_amount }}ETB</td>
                                             <td>+{{ $data->commission }}ETB</td>
                                             <td>{{ $data->current_balance }}ETB</td>
+                                            <td>{{ $data->user->first_name }} {{ $data->user->last_name }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

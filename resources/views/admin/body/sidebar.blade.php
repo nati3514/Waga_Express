@@ -11,6 +11,7 @@
         </li>
 
         {{-- //////////////////////////////////// --}}
+       
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>{{ __('Packages') }}</span><i
@@ -35,6 +36,7 @@
                     </a></li> --}}
             </ul>
         </li>
+       
         @can('Staff access')
                    
         <li class="nav-item">
@@ -55,12 +57,7 @@
                         <i class="bi bi-grid"></i> <span>{{ __('Staff List') }}</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $routeName == 'staff.report' ? 'active' : '' }} "
-                        href="{{ route('staff.report') }}">
-                        <i class="bi bi-grid"></i> <span>{{ __('Reports') }}</span>
-                    </a>
-                </li>
+                
             </ul>
         </li>
         @endcan
@@ -70,16 +67,24 @@
                     class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="transaction" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                @can('Staff access')
                 <li>
                     <a class="nav-link {{ $routeName == 'transaction.view_deposit' ? 'active' : '' }} "
                         href="{{ route('transaction.view_deposit') }}">
                         <i class="bi bi-grid"></i> <span>{{ __('Deposit') }}</span>
                     </a>
                 </li>
+                @endcan
                 <li>
                     <a class="nav-link {{ $routeName == 'transaction.view_history' ? 'active' : '' }} "
                         href="{{ route('transaction.view_history') }}">
                         <i class="bi bi-grid"></i> <span>{{ __('Transaction History') }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $routeName == 'transaction.report' ? 'active' : '' }} "
+                        href="{{ route('transaction.report') }}">
+                        <i class="bi bi-grid"></i> <span>{{ __('Reports') }}</span>
                     </a>
                 </li>
 

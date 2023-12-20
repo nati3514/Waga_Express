@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\Transaction;
 use App\Models\Percent;
+use Twilio\Rest\Client;
+use Illuminate\Support\Carbon;
 
 class ProductController extends Controller
 {
@@ -128,11 +130,13 @@ class ProductController extends Controller
 
             $price = $request->price;
             $user = Auth::user();
+            $amountLimit = $user->amount_limit;
+            // dd($amountLimit);
             $senderBranch = User::join('branches','branches.id','=','users.branch_Id')
             ->where('users.id',$user->id)
             ->first();
 
-            if ($senderBranch) {
+            If(Auth::user()->hasRole ('admin')) {
                 $senderBranchId = $senderBranch->id;
         
                 // Retrieve commission values from the transactions table
@@ -189,6 +193,7 @@ class ProductController extends Controller
             $transaction = Transaction::create([
                 'branch_id_fk' => $request->from_branch,
                 'package_id_fk' => $package->id,
+                'user_id_fk' => $user->id,
                 'status' => $percentCollected->status,
                 'percent' => $percentCollected->percent,
                 'price' => $request->price,
@@ -221,10 +226,151 @@ class ProductController extends Controller
                 // 'package_on_hand' => $collectedPackageCount,
                 // 'delivered' => $deliveredPackageCount,
             ]);
+
+            return redirect(route('products.index'))->with('success', 'Registration successfull');
         }
 
+        If(Auth::user()->hasRole ('cashier')) {
+            $senderBranchId = $senderBranch->id;
+    
+            // Retrieve commission values from the transactions table
+            $transactions = Transaction::where('branch_id_fk', $senderBranchId)
+                ->where(function ($query) use ($user) {
+                    $query->orWhere('branch_id_fk', $user->branch_Id);
+                })
+                ->get();
 
-        return redirect(route('products.index'))->with('success', 'Registration successfull');
+                $currentDate = Carbon::now()->format('Y-m-d');
+
+                // Retrieve the sum of the price column from transactions for the current day
+                $totalPrice = Transaction::where(function ($query) use ($user, $senderBranchId) {
+                        $query->where('branch_id_fk', $senderBranchId)
+                              ->orWhere('branch_id_fk', $user->branch_Id);
+                    })
+                    ->where('user_id_fk', $user->id) // Additional condition for the authenticated user
+                    ->whereDate('created_at', $currentDate)
+                    ->sum('price');
+
+            // dd($totalPrice);     
+            // dd($amountLimit);
+        $current_total_price = $totalPrice + $price;
+        // dd($current_total_price);
+        $percentCollected = Percent::where('status','collected')->first();
+        // dd($percentCollected->status);
+        // $percentDelivered = Percent::select('percent')->where('status','delivered')->first();
+        $branchBalance = $senderBranch->balance;
+        //dd($percentCollected->percent);
+        $deduct_amount = ($price * ((100 - $percentCollected->percent)/100));
+        
+        $com_amount = ($price * (($percentCollected->percent)/100));
+        $total = $branchBalance - ($price * ((100 - $percentCollected->percent)/100));
+        // dd($total);
+        // dd($current_total_price < $amountLimit);
+        
+        if( $total > 0  && $current_total_price < $amountLimit ){
+            $senderInfo = customer::firstOrCreate(
+                ['phone' => $request->sender_phone],
+                [
+                    'name' => $request->sender_name,
+                    'city' => $request->sender_city,
+                ]
+            
+            );
+            $receiverInfo = customer::firstOrCreate(
+                ['phone' => $request->receiver_phone],
+                [
+                    'name' => $request->receiver_name,
+                    'city' => $request->receiver_city,
+                ]
+            );
+       
+            $package = package::create([
+                'package_tag' => 'package-'. Str::random(5),
+                'package_type' => $request->package_type,
+                'sender_ID' => $senderInfo->id,
+                'receiver_ID' => $receiverInfo->id,
+                'status' => $request->status,
+                'from_branch_id' => $request->from_branch,
+                'to_branch_id' => $request->to_branch,
+                'weight' => $request->weight,
+            ]);
+    
+            
+    
+            
+           
+            
+            $transaction = Transaction::create([
+                'branch_id_fk' => $request->from_branch,
+                'package_id_fk' => $package->id,
+                'user_id_fk' => $user->id,
+                'status' => $percentCollected->status,
+                'percent' => $percentCollected->percent,
+                'price' => $request->price,
+                'Ded_amount' => $deduct_amount,
+                'commission' => $com_amount,
+                'current_balance' => $total,
+            ]);
+    
+            // Count the number of transactions associated with the authenticated user's branch
+          $transactionCount = Transaction::where('branch_id_fk', $user->branch_Id)
+             ->count();
+          // Count the number of packages where status is 'collected'
+          $collectedPackageCount = package::where('status', 'collected')->count();
+          $deliveredPackageCount = package::where('status', 'delivered')->count();
+          // dd($collectedPackageCount);
+            // Retrieve commission values again including the new transaction
+        $transactions = Transaction::where('branch_id_fk', $senderBranchId)
+        ->where(function ($query) use ($user) {
+            $query->orWhere('branch_id_fk', $user->branch_Id);
+        })
+        ->get();
+    
+            // Calculate the sum of commission values
+            $totalCommission = $transactions->sum('commission');
+    
+            branch::where('id',$senderBranch->branch_Id)->update([
+                'balance' => $total,
+                'Tot_commission' => $totalCommission,
+                'Tot_package' => $transactionCount,
+                // 'package_on_hand' => $collectedPackageCount,
+                // 'delivered' => $deliveredPackageCount,
+            ]);
+    
+            return redirect(route('products.index'))->with('success', 'Registration successfull');
+           
+        }
+        return back()->with('error', 'Insufficient balance'); 
+        
+    }
+
+    //     $sender_phone = $request->sender_phone;
+    //     $branch=$senderBranch->branch_name;
+    //     $price = $request->price;
+    //     // Format the phone number as "+251 98 666 4047"
+    //     $formatted_sender_phone = sprintf(
+    //         "+251 %s %s %s",
+    //         substr($sender_phone, 0, 2),
+    //         substr($sender_phone, 2, 3),
+    //         substr($sender_phone, 5)
+    //     );
+        
+    //     $sid = getenv("TWILIO_SID"); 
+    //     $token = getenv("TWILIO_TOKEN");
+    //     $sendernumber = getenv("TWILIO_PHONE");
+    //     $twilio = new Client($sid, $token);
+
+    // $message = $twilio->messages->create(
+    //     $formatted_sender_phone, // to
+    //     [
+    //         "body" => "Welcome to WagaExpress Your package is collected from $branch. You paid $price ETB. Thank You for using WagaExpress",
+    //         "from" => $sendernumber
+    //     ]
+    // );
+
+        // dd("message send successfully");
+
+        return redirect(route('products.index'))->with('error', 'error ');
     }
 
 

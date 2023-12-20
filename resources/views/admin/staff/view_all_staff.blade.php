@@ -32,6 +32,7 @@
                                         <th scope="col">{{ __('Last Name') }}</th>
                                         <th scope="col">{{ __('Email') }}</th>
                                         <th scope="col">{{ __('Role') }}</th>
+                                        <th scope="col">{{ __('amount_limit') }}</th>
                                         
                                         {{-- <th scope="col">{{ __('Status') }}</th> --}}
                                         <th scope="col">{{ __('Action') }}</th>
@@ -53,6 +54,7 @@
                                                     <span class="badge bg-secondary text-center">{{ $role->name }}</span>
                                                 @endforeach
                                             </td>
+                                            <td>{{ $data->amount_limit }}</td>
 
                                             {{-- Status badge --}}
                                             {{-- <td>
@@ -87,111 +89,111 @@
                                         </tr>
 
                                         {{-- Edit modal start --}}
-                                        <div class="modal fade" id="edit{{ $data->id }}" data-bs-backdrop="static"
-                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-xl modal-dialog-scrollable">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                                                            {{ __('Modal title') }}
-                                                        </h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col col-md-12">
-                                                                <div class="card">
-                                                                    <div class="card-body">
-                                                                        <form method="POST"
-                                                                            action="{{ route('staff.update', $data->id) }}"
-                                                                            class="text-capitalize">
-                                                                            @csrf
-                                                                            @method('PATCH')
-                                                                            <h5 class="card-title">{{ __('New  Staff') }}
-                                                                            </h5>
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-12 col-md-6  mb-3">
-                                                                                    <label for="first_name"
-                                                                                        class=" col-form-label"><span
-                                                                                            class="text-danger">*</span>{{ __('First Name') }}</label>
-                                                                                    <input name="first_name"
-                                                                                        value="{{ $data->first_name }}"
-                                                                                        class="form-control  @error('first_name') is-invalid @enderror"
-                                                                                        type="text" placeholder="">
-                                                                                    @error('first_name')
-                                                                                        <span class="invalid-feedback">
-                                                                                            {{ $message }}
-                                                                                        </span>
-                                                                                    @enderror
-                                                                                </div>
-                                                                                <div class="col-12 col-md-6  mb-3">
-                                                                                    <label for="last_name"
-                                                                                        class=" col-form-label"><span
-                                                                                            class="text-danger">*</span>{{ __('Last Name') }}</label>
-                                                                                    <input name="last_name"
-                                                                                        value="{{ $data->last_name }}"
-                                                                                        class="form-control  @error('last_name') is-invalid @enderror"
-                                                                                        type="text" placeholder="">
-                                                                                    @error('last_name')
-                                                                                        <span class="invalid-feedback">
-                                                                                            {{ $message }}
-                                                                                        </span>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                           
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-12 col-md-6  mb-3">
-                                                                                    <label for="email"
-                                                                                        class=" col-form-label"><span
-                                                                                            class="text-danger">*</span>{{ __('Email') }}</label>
-                                                                                    <input name="email"
-                                                                                        value="{{ $data->email }}"
-                                                                                        class="form-control  @error('email') is-invalid @enderror"
-                                                                                        type="text" placeholder="">
-                                                                                    @error('email')
-                                                                                        <span class="invalid-feedback">
-                                                                                            {{ $message }}
-                                                                                        </span>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-12 col-md-6  mb-3">
-                                                                                    <label for="password"
-                                                                                        class=" col-form-label"><span
-                                                                                            class="text-danger">*</span>{{ __('Password') }}</label>
-                                                                                    <input name="password"
-                                                                                        
-                                                                                        class="form-control  @error('password') is-invalid @enderror"
-                                                                                        type="text" placeholder="">
-                                                                                    @error('password')
-                                                                                        <span class="invalid-feedback">
-                                                                                            {{ $message }}
-                                                                                        </span>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-secondary"
-                                                                                    data-bs-dismiss="modal">{{ __('Close') }}</button>
-                                                                                <button type="submit"
-                                                                                    class="btn btn-primary">{{ __('Update') }}
-                                                                                </button>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
+<div class="modal fade" id="edit{{ $data->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                    {{ __('Edit Staff') }}
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('staff.update', $data->id) }}"
+                                    class="text-capitalize">
+                                    @csrf
+                                    @method('PATCH')
+                                    <h5 class="card-title">{{ __('Staff Information') }}</h5>
+
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-md-6 mb-3">
+                                            <label for="first_name" class="col-form-label"><span
+                                                    class="text-danger">*</span>{{ __('First Name') }}</label>
+                                            <input name="first_name" value="{{ $data->first_name }}"
+                                                class="form-control @error('first_name') is-invalid @enderror" type="text"
+                                                placeholder="">
+                                            @error('first_name')
+                                                <span class="invalid-feedback">
+                                                    {{ $message }}
+                                                </span>
+                                            @enderror
                                         </div>
-                                        {{-- Edit modal end --}}
+                                        <div class="col-12 col-md-6 mb-3">
+                                            <label for="last_name" class="col-form-label"><span
+                                                    class="text-danger">*</span>{{ __('Last Name') }}</label>
+                                            <input name="last_name" value="{{ $data->last_name }}"
+                                                class="form-control @error('last_name') is-invalid @enderror" type="text"
+                                                placeholder="">
+                                            @error('last_name')
+                                                <span class="invalid-feedback">
+                                                    {{ $message }}
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-md-6 mb-3">
+                                            <label for="email" class="col-form-label"><span
+                                                    class="text-danger">*</span>{{ __('Email') }}</label>
+                                            <input name="email" value="{{ $data->email }}"
+                                                class="form-control @error('email') is-invalid @enderror" type="text"
+                                                placeholder="">
+                                            @error('email')
+                                                <span class="invalid-feedback">
+                                                    {{ $message }}
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12 col-md-6 mb-3">
+                                            <label for="amount_limit" class="col-form-label">{{ __('Amount Limit (ETB)') }}</label>
+                                            <input name="amount_limit" value="{{ $data->amount_limit }}"
+                                                class="form-control @error('amount_limit') is-invalid @enderror" type="number"
+                                                placeholder="Enter amount limit">
+                                            @error('amount_limit')
+                                                <span class="invalid-feedback">
+                                                    {{ $message }}
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-md-6 mb-3">
+                                            <label for="password" class="col-form-label"><span
+                                                    class="text-danger">*</span>{{ __('Password') }}</label>
+                                            <input name="password"
+                                                class="form-control @error('password') is-invalid @enderror" type="text"
+                                                placeholder="">
+                                            @error('password')
+                                                <span class="invalid-feedback">
+                                                    {{ $message }}
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">{{ __('Close') }}</button>
+                                        <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- Edit modal end --}}
+
 
                                         {{-- Delete modal start --}}
                                         <div class="modal fade" id="delete{{ $data->id }}" data-bs-backdrop="static"

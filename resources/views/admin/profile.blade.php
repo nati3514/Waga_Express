@@ -116,6 +116,15 @@
                                             {{ $user_data->branch_name }}
                                         </div>
                                     </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">{{ __('Amount Limit') }}</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            {{ $user_data->amount_limit }}ETB
+                                        </div>
+                                    </div>
                                     {{-- <hr>
                                     <div class="row">
                                         <div class="col-sm-3">

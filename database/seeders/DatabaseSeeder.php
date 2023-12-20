@@ -227,6 +227,7 @@ class DatabaseSeeder extends Seeder
 
         $superAdmin = User::create([
             'branch_Id'=>2,
+            'amount_limit'=>0,
             'first_name'=>'dagi',
             'last_name'=>'dagi',
             'email'=>'dagi@gmail.com',
@@ -234,6 +235,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $Admin = User::create([
             'branch_Id'=>1,
+            'amount_limit'=>0,
             'first_name'=>'nati',
             'last_name'=>'age',
             'email'=>'natiage@gmail.com',
@@ -241,6 +243,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $cashier = User::create([
             'branch_Id'=>3,
+            'amount_limit'=>0,
             'first_name'=>'noya',
             'last_name'=>'tad',
             'email'=>'noya@gmail.com',
