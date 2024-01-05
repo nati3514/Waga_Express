@@ -98,6 +98,19 @@
                                         @enderror
                                     </div>
                                 </div>
+                                
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <label for="status" class="col-form-label">{{ __('Status') }}</label>
+                                        <select name="status" class="form-control @error('status') is-invalid @enderror">
+                                            <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
+                                            <option value="deactive" {{ old('status') == 'deactive' ? 'selected' : '' }}>Deactive</option>
+                                        </select>
+                                        @error('status')
+                                            <span class="invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    
 
                                 <button class="btn btn-primary" type="submit">Save</button>
                             </form>

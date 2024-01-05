@@ -48,6 +48,7 @@ class HomeController extends Controller
                           ->orWhere('branch_id_fk', $user->branch_Id);
                     })
                     ->whereDate('created_at', $currentDate)
+                    ->where('status', 'collected')
                     ->sum('price');       
                 // dd($totalPrice);
                 $countCollectedPackages = Package::where('from_branch_id', $data->branch_Id)
@@ -56,7 +57,24 @@ class HomeController extends Controller
                     })
                     ->where('status', 'collected')
                     ->count();
+                $countReceivedPackages = Package::where('to_branch_id', $data->branch_Id)
+                    ->where(function ($query) use ($user) {
+                        $query->orWhere('to_branch_id', $user->branch_Id);
+                    })
+                    ->where('status', 'received')
+                    ->count();
+
+                $countPackages = $countCollectedPackages + $countReceivedPackages;
+                    // dd($countPackages);
+                    
+
+                    $leatestTrancation = Transaction::where('branch_id_fk', $user->branch_Id)->with('user')
+                    ->orderBy('created_at', 'desc')
+                    ->take(5)
+                    ->get();
             }
+
+            
         }
         If(Auth::user()->hasRole ('cashier')) {
             if ($data) {
@@ -77,13 +95,36 @@ class HomeController extends Controller
                     ->where(function ($query) use ($user) {
                         $query->orWhere('from_branch_id', $user->branch_Id);
                     })
+                    ->whereIn('status', ['collected', 'received'])
+                    ->count();
+
+                $leatestTrancation = Transaction::where('user_id_fk', $user->id)->with('user')
+                    ->orderBy('created_at', 'desc')
+                    ->take(5)
+                    ->get();
+
+                    
+                $countCollectedPackages = Package::where('from_branch_id', $data->branch_Id)
+                    ->where(function ($query) use ($user) {
+                        $query->orWhere('from_branch_id', $user->branch_Id);
+                    })
                     ->where('status', 'collected')
                     ->count();
+                $countReceivedPackages = Package::where('to_branch_id', $data->branch_Id)
+                    ->where(function ($query) use ($user) {
+                        $query->orWhere('to_branch_id', $user->branch_Id);
+                    })
+                    ->where('status', 'received')
+                    ->count();
+
+                $countPackages = $countCollectedPackages + $countReceivedPackages;
+                    // dd($countPackages);
             }
+
         }
-            $countDeliveredPackages = Package::where('from_branch_id', $data->branch_Id)
+            $countDeliveredPackages = Package::where('to_branch_id', $data->branch_Id)
              ->where(function ($query) use ($user) {
-                 $query->orWhere('from_branch_id', $user->branch_Id);
+                 $query->orWhere('to_branch_id', $user->branch_Id);
              })
              ->where('status', 'delivered')
              ->count();
@@ -94,10 +135,11 @@ class HomeController extends Controller
              ->count();
             // dd($countCollectedPackages);
         return view('admin.dashboard')->with('user_data', $data)
-        ->with('count_collected_packages', $countCollectedPackages)
+        ->with('count_collected_packages', $countPackages)
         ->with('count_delivered_packages', $countDeliveredPackages)
         ->with('total_packages', $totalCountPackages)
-        ->with('total_price', $totalPrice);
+        ->with('total_price', $totalPrice)
+        ->with('Leatest_Trancation', $leatestTrancation);
         
     }
     public function profile()

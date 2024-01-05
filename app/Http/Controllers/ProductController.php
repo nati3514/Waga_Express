@@ -26,18 +26,198 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function received_package(){
-        $data= DB::table('packages')
-        ->join('customers as t1','t1.id','=','packages.sender_ID')         
-        ->join('customers as t2','t2.id','=','packages.receiver_ID')  
-        ->join('branches as t3','t3.id','=','packages.from_branch_id')  
-        ->join('branches as t4','t4.id','=','packages.to_branch_id')
-        ->select('packages.*','t1.name as sender_name','t1.phone as sender_phone','t1.city as sender_city','t3.branch_name as sender_branch','t2.name as receiver_name','t2.phone as receiver_phone','t2.city as receiver_city','t4.branch_name as receiver_branch')
-        ->orderBy('packages.created_at', 'desc') // Order by created_at in descending order         
-        ->get();
+        $user = Auth::user();
+        // dd($user->branch_Id);
+
+    $data = DB::table('packages')
+    ->join('customers as t1', 't1.id', '=', 'packages.sender_ID')
+    ->join('customers as t2', 't2.id', '=', 'packages.receiver_ID')
+    ->join('branches as t3', 't3.id', '=', 'packages.from_branch_id')
+    ->join('branches as t4', 't4.id', '=', 'packages.to_branch_id')
+    ->select(
+        'packages.*',
+        't1.name as sender_name',
+        't1.phone as sender_phone',
+        't1.city as sender_city',
+        't3.branch_name as sender_branch',
+        't2.name as receiver_name',
+        't2.phone as receiver_phone',
+        't2.city as receiver_city',
+        't4.branch_name as receiver_branch'
+    )
+    ->where('t4.id', $user->branch_Id) // Filter by to_branch_id matching the authenticated user's branch
+    ->orderBy('packages.created_at', 'desc')
+    ->get();
     
     
         return view('admin.received_package_list',compact('data'));
     }
+
+    public function delivered_package(){
+        $user = Auth::user();
+        // dd($user->branch_Id);
+
+    $data = DB::table('packages')
+    ->join('customers as t1', 't1.id', '=', 'packages.sender_ID')
+    ->join('customers as t2', 't2.id', '=', 'packages.receiver_ID')
+    ->join('branches as t3', 't3.id', '=', 'packages.from_branch_id')
+    ->join('branches as t4', 't4.id', '=', 'packages.to_branch_id')
+    ->select(
+        'packages.*',
+        't1.name as sender_name',
+        't1.phone as sender_phone',
+        't1.city as sender_city',
+        't3.branch_name as sender_branch',
+        't2.name as receiver_name',
+        't2.phone as receiver_phone',
+        't2.city as receiver_city',
+        't4.branch_name as receiver_branch'
+    )
+    ->where('t4.id', $user->branch_Id) // Filter by to_branch_id matching the authenticated user's branch
+    ->orderBy('packages.created_at', 'desc')
+    ->get();
+    
+    
+        return view('admin.delivered_package_list',compact('data'));
+    }
+    public function receivePackage(Request $request)
+{
+    $user = Auth::user();
+    $packageTag = $request->input('package_tag');
+    $branchID = User::join('branches', 'branches.id', '=', 'users.branch_Id')
+            ->where('users.id', $user->id)
+            ->first();
+ 
+            // Fetch the updated package information
+            $packageInfo = Package::where('package_tag', $packageTag)->first();
+
+            // Check if the package exists
+    if (!$packageInfo) {
+        return back()->with('error', 'Package does not exist.');
+    }
+
+    // Check if the package has already been received
+    if ($packageInfo->status == 'received') {
+        return back()->with('error', 'You already added this package.');
+    }
+            
+        
+            // Retrieve the percentage of delivery for calculating the commission
+        $percentDelivered = Percent::select('percent')->where('status', 'received')->first();
+        $percentDelivered = Percent::where('status','received')->first();
+        // dd($percentDelivered->percent);
+        // Retrieve the transaction price associated with the package
+        $price = Transaction::where('package_id_fk', $packageInfo->id)->first();
+        // dd($price->price);ssss
+    
+        // Check if the package is intended for the current branch of the authenticated user
+        if ($packageInfo->to_branch_id == $branchID->branch_Id) {
+            // Retrieve the current balance of the destination branch
+            $branchBalance = Branch::where('id', $packageInfo->to_branch_id)->first();
+            
+
+            $deduct_amount = 0;
+            
+            $com_amount = ($price->price * (($percentDelivered->percent) / 100));
+    
+            // Calculate the total balance after adding the commission
+            $total = $branchBalance->balance + ($price->price * (($percentDelivered->percent) / 100));
+            // dd($tot);
+    
+            $transaction = Transaction::create([
+                'branch_id_fk' => $branchID->branch_Id,
+                'package_id_fk' => $packageInfo->id,
+                'user_id_fk' => $user->id,
+                'status' => $percentDelivered->status,
+                'percent' => $percentDelivered->percent,
+                'price' => $price->price,
+                'Ded_amount' => $deduct_amount,
+                'commission' => $com_amount,
+                'current_balance' => $total,
+
+                
+            ]);
+            // dd($transaction);
+            
+            // Update the balance of the destination branch
+            $totalCommission = Branch::where('id', $packageInfo->to_branch_id)->update([
+                'balance' => $total,
+            ]);
+    
+            // Update the status of the package to 'delivered'
+            Package::where('id', $packageInfo->id)->update([
+                'status' => 'received',
+            ]);
+        
+                // Fetch all received packages based on the provided conditions
+                $data = DB::table('packages')
+                    ->join('customers as t1', 't1.id', '=', 'packages.sender_ID')
+                    ->join('customers as t2', 't2.id', '=', 'packages.receiver_ID')
+                    ->join('branches as t3', 't3.id', '=', 'packages.from_branch_id')
+                    ->join('branches as t4', 't4.id', '=', 'packages.to_branch_id')
+                    ->select(
+                        'packages.*',
+                        't1.name as sender_name',
+                        't1.phone as sender_phone',
+                        't1.city as sender_city',
+                        't3.branch_name as sender_branch',
+                        't2.name as receiver_name',
+                        't2.phone as receiver_phone',
+                        't2.city as receiver_city',
+                        't4.branch_name as receiver_branch'
+                    )
+                    ->where('t4.id', $branchID->branch_Id) // Filter by receiver's branch
+                    ->where('packages.status', 'received')
+                    ->orderBy('packages.created_at', 'desc')
+                    ->get();
+        
+                    // Check if the collection is not empty before trying to access the property
+                    // if (!$data->isEmpty()) {
+                    //     // Access the receiver_phone property of the first item in the collection
+                    //     $receiver_phone = $data->first()->receiver_phone;
+                    //     $name = $data->first()->receiver_name;
+                    //     $branch = $data->first()->receiver_branch;
+                    
+                        
+                        
+                    //     $price = $request->price;
+                    //     // Format the phone number as "+251 98 666 4047"
+                    //     $formatted_receiver_phone = sprintf(
+                    //         "+251 %s %s %s",
+                    //         substr($receiver_phone, 0, 2),
+                    //         substr($receiver_phone, 2, 3),
+                    //         substr($receiver_phone, 5)
+                    //     );
+                        
+                    //     $sid = getenv("TWILIO_SID"); 
+                    //     $token = getenv("TWILIO_TOKEN");
+                    //     $receivernumber = getenv("TWILIO_PHONE");
+                    //     $twilio = new Client($sid, $token);
+                
+                    // $message = $twilio->messages->create(
+                    //     $formatted_receiver_phone, // to
+                    //     [
+                    //         "body" => "Hello $name. Welcome to WagaExpress! Your package has arrived from our $branch. Please come and collect your package. Thank you for choosing WagaExpress!",
+                    //         "from" => $receivernumber
+                    //     ]
+                    // );
+                
+                    //     // dd("message send successfully");
+                    // }
+                return view('admin.received_package_list', compact('packageInfo','data'))->with('success', 'Package received successfully.');
+
+                
+   
+
+        return redirect(route('products.index'))->with('error', 'error ');
+            } else {
+                // If the package is not intended for the current branch, show an error message
+                return back()->with('error', 'You cannot receive this package');
+            }
+        
+}
+
+
     public function index()
     {
         $user = Auth::user();
@@ -125,6 +305,7 @@ class ProductController extends Controller
                 'package_type' => 'required',
                 'weight' => 'required',
                 'status' => 'required',
+                'package_tag' => 'required|unique:packages,package_tag',
                
             ]);
 
@@ -175,7 +356,7 @@ class ProductController extends Controller
             );
        
             $package = package::create([
-                'package_tag' => 'package-'. Str::random(5),
+                'package_tag' => $request->input('package_tag'),
                 'package_type' => $request->package_type,
                 'sender_ID' => $senderInfo->id,
                 'receiver_ID' => $receiverInfo->id,
@@ -226,6 +407,30 @@ class ProductController extends Controller
                 // 'package_on_hand' => $collectedPackageCount,
                 // 'delivered' => $deliveredPackageCount,
             ]);
+    //     $sender_phone = $request->sender_phone;
+    //     $branch=$senderBranch->branch_name;
+    //     $price = $request->price;
+    //     // Format the phone number as "+251 98 666 4047"
+    //     $formatted_sender_phone = sprintf(
+    //         "+251 %s %s %s",
+    //         substr($sender_phone, 0, 2),
+    //         substr($sender_phone, 2, 3),
+    //         substr($sender_phone, 5)
+    //     );
+        
+    //     $sid = getenv("TWILIO_SID"); 
+    //     $token = getenv("TWILIO_TOKEN");
+    //     $sendernumber = getenv("TWILIO_PHONE");
+    //     $twilio = new Client($sid, $token);
+
+    // $message = $twilio->messages->create(
+    //     $formatted_sender_phone, // to
+    //     [
+    //         "body" => "Welcome to WagaExpress Your package is collected from $branch. You paid $price ETB. Thank You for using WagaExpress",
+    //         "from" => $sendernumber
+    //     ]
+    // );
+    
 
             return redirect(route('products.index'))->with('success', 'Registration successfull');
         }
@@ -285,7 +490,7 @@ class ProductController extends Controller
             );
        
             $package = package::create([
-                'package_tag' => 'package-'. Str::random(5),
+                'package_tag' => $request->input('package_tag'),
                 'package_type' => $request->package_type,
                 'sender_ID' => $senderInfo->id,
                 'receiver_ID' => $receiverInfo->id,
@@ -337,6 +542,30 @@ class ProductController extends Controller
                 // 'delivered' => $deliveredPackageCount,
             ]);
     
+        //     $sender_phone = $request->sender_phone;
+        //     $branch=$senderBranch->branch_name;
+        //     $price = $request->price;
+        //     // Format the phone number as "+251 98 666 4047"
+        //     $formatted_sender_phone = sprintf(
+        //         "+251 %s %s %s",
+        //         substr($sender_phone, 0, 2),
+        //         substr($sender_phone, 2, 3),
+        //         substr($sender_phone, 5)
+        //     );
+            
+        //     $sid = getenv("TWILIO_SID"); 
+        //     $token = getenv("TWILIO_TOKEN");
+        //     $sendernumber = getenv("TWILIO_PHONE");
+        //     $twilio = new Client($sid, $token);
+    
+        // $message = $twilio->messages->create(
+        //     $formatted_sender_phone, // to
+        //     [
+        //         "body" => "Welcome to WagaExpress Your package is collected from $branch. You paid $price ETB. Thank You for using WagaExpress",
+        //         "from" => $sendernumber
+        //     ]
+        // );
+
             return redirect(route('products.index'))->with('success', 'Registration successfull');
            
         }
@@ -344,31 +573,31 @@ class ProductController extends Controller
         
     }
 
-    //     $sender_phone = $request->sender_phone;
-    //     $branch=$senderBranch->branch_name;
-    //     $price = $request->price;
-    //     // Format the phone number as "+251 98 666 4047"
-    //     $formatted_sender_phone = sprintf(
-    //         "+251 %s %s %s",
-    //         substr($sender_phone, 0, 2),
-    //         substr($sender_phone, 2, 3),
-    //         substr($sender_phone, 5)
-    //     );
+        $sender_phone = $request->sender_phone;
+        $branch=$senderBranch->branch_name;
+        $price = $request->price;
+        // Format the phone number as "+251 98 666 4047"
+        $formatted_sender_phone = sprintf(
+            "+251 %s %s %s",
+            substr($sender_phone, 0, 2),
+            substr($sender_phone, 2, 3),
+            substr($sender_phone, 5)
+        );
         
-    //     $sid = getenv("TWILIO_SID"); 
-    //     $token = getenv("TWILIO_TOKEN");
-    //     $sendernumber = getenv("TWILIO_PHONE");
-    //     $twilio = new Client($sid, $token);
+        $sid = getenv("TWILIO_SID"); 
+        $token = getenv("TWILIO_TOKEN");
+        $sendernumber = getenv("TWILIO_PHONE");
+        $twilio = new Client($sid, $token);
 
-    // $message = $twilio->messages->create(
-    //     $formatted_sender_phone, // to
-    //     [
-    //         "body" => "Welcome to WagaExpress Your package is collected from $branch. You paid $price ETB. Thank You for using WagaExpress",
-    //         "from" => $sendernumber
-    //     ]
-    // );
+    $message = $twilio->messages->create(
+        $formatted_sender_phone, // to
+        [
+            "body" => "Welcome to WagaExpress Your package is collected from $branch. You paid $price ETB. Thank You for using WagaExpress",
+            "from" => $sendernumber
+        ]
+    );
 
-        // dd("message send successfully");
+        dd("message send successfully");
 
         return redirect(route('products.index'))->with('error', 'error ');
     }
@@ -380,7 +609,29 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        return view('admin.show_product');
+        $data = DB::table('packages')
+        ->join('customers as t1', 't1.id', '=', 'packages.sender_ID')
+        ->join('customers as t2', 't2.id', '=', 'packages.receiver_ID')
+        ->join('branches as t3', 't3.id', '=', 'packages.from_branch_id')
+        ->join('branches as t4', 't4.id', '=', 'packages.to_branch_id')
+        ->select(
+            'packages.*',
+            't1.name as sender_name',
+            't1.phone as sender_phone',
+            't1.city as sender_city',
+            't3.branch_name as sender_branch',
+            't2.name as receiver_name',
+            't2.phone as receiver_phone',
+            't2.city as receiver_city',
+            't4.branch_name as receiver_branch'
+        )
+        ->where('packages.id', $id)
+        // ->where('packages.status', 'collected') 
+        ->first();
+        // dd($data);
+        $price = Transaction::where('package_id_fk', $data->id)->first();
+        $weight = WeightPrice::where('id', $data->weight)->first();
+            return view('admin.show_product', compact('data','price','weight'));
     }
 
     /**
@@ -462,67 +713,18 @@ class ProductController extends Controller
         // You might also include JavaScript code to trigger the print action
     }
 
-    public function receive_package($id) {
-        // Get the authenticated user
-        $user = Auth::user();
-    
-        // Retrieve the branch ID associated with the user
-        $branchID = User::join('branches', 'branches.id', '=', 'users.branch_Id')
-            ->where('users.id', $user->id)
-            ->first();
-    
-        // Retrieve information about the package with the given ID
-        $packageData = Package::where('id', $id)->first();
-    
-        // Retrieve the percentage of delivery for calculating the commission
-        $percentDelivered = Percent::select('percent')->where('status', 'delivered')->first();
-        $percentDelivered = Percent::where('status','delivered')->first();
-        // dd($percentDelivered->percent);
-        // Retrieve the transaction price associated with the package
-        $price = Transaction::where('package_id_fk', $id)->first();
-    
-        // Check if the package is intended for the current branch of the authenticated user
-        if ($packageData->to_branch_id == $branchID->branch_Id) {
-            // Retrieve the current balance of the destination branch
-            $branchBalance = Branch::where('id', $packageData->to_branch_id)->first();
+    public function updatePackageStatus(Request $request)
+    {
+        $id = $request->input('id');
 
-            $deduct_amount = 0;
-            
-            $com_amount = ($price->price * (($percentDelivered->percent) / 100));
-    
-            // Calculate the total balance after adding the commission
-            $total = $branchBalance->balance + ($price->price * (($percentDelivered->percent) / 100));
-            // dd($tot);
-    
-            $transaction = Transaction::create([
-                'branch_id_fk' => $branchID->branch_Id,
-                'package_id_fk' => $id,
-                'status' => $percentDelivered->status,
-                'percent' => $percentDelivered->percent,
-                'price' => $price->price,
-                'Ded_amount' => $deduct_amount,
-                'commission' => $com_amount,
-                'current_balance' => $total,
+        // Update the status of the package to 'delivered'
+        Package::where('id', $id)->update([
+            'status' => $request->input('status', 'delivered'),
+        ]);
 
-                
-            ]);
-            
-            // Update the balance of the destination branch
-            $totalCommission = Branch::where('id', $packageData->to_branch_id)->update([
-                'balance' => $total,
-            ]);
-    
-            // Update the status of the package to 'delivered'
-            Package::where('id', $id)->update([
-                'status' => 'delivered',
-            ]);
-    
-            // Redirect back with a success message
-            return back()->with('success', 'Successfully received');
-        } else {
-            // If the package is not intended for the current branch, show an error message
-            return back()->with('error', 'You cannot receive this package');
-        }
+        // Return a response (you can customize this based on your needs)
+        return response()->json(['message' => 'Package status updated successfully']);
     }
     
+       
 }

@@ -57,8 +57,8 @@
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                    <p class="mb-0">Designed by <a href="https://github.com/nati3514">Natnael Agenagnew</a><br>Distributed by
-                        <a href="https://zebeltech.com">Zobel Technology</a>
+                    <p class="mb-0">Designed by <a href="https://github.com/nati3514">N</a><br>Distributed by
+                        <a href="https://zebeltechnology.com">Zobel Technology</a>
                     </p>
                 </div>
             </div>

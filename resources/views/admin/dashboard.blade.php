@@ -26,7 +26,7 @@
                                             <i class="fa-solid fa-money-check-dollar"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>{{ $user_data->balance }}ETB
+                                            <h6>{{ number_format($user_data->balance) }}ETB
                                             </h6>
 
                                         </div>
@@ -64,7 +64,7 @@
                                             <i class="fa-solid fa-briefcase"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>{{ $user_data->Tot_commission }}birr</h6>
+                                            <h6>{{ number_format($user_data->Tot_commission) }}ETB</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -115,12 +115,60 @@
                                             <i class="fa-solid fa-truck-fast"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>{{ $total_price }}ETB</h6>
+                                            <h6>{{ number_format($total_price) }}ETB</h6>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <h3>Latest Transaction</h3>
+                        <section class="section">
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <table class="table datatable ">
+                                                <thead class="text-capitalize">
+                                                    <tr>
+                                                        <th scope="col">{{ __('ID') }}</th>
+                                                        <th scope="col">{{ __('Date') }}</th>
+                                                        <th scope="col">{{ __('Status') }}</th>
+                                                        <th scope="col">{{ __('Package Price') }}</th>
+                                                        <th scope="col">{{ __('Ded_amount') }}</th>
+                                                        <th scope="col">{{ __('Commission') }}</th>
+                                                        <th scope="col">{{ __('Closing Balance') }}</th>       
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    </tr>
+                                                    @foreach ($Leatest_Trancation as $Leatest_Trancation)
+                                                        <tr>
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>{{ $Leatest_Trancation->created_at }}</td>
+                                                            <td>
+                                                                @if ($Leatest_Trancation->status == 'collected')
+                                                                <span class="badge bg-warning text-white">{{ __('Collected') }}</span>
+                                                                @elseif($Leatest_Trancation->status == 'in-transit')
+                                                                    <span class="badge bg-warning text-dark">{{ __('In-Transit') }}</span>
+                                                                @elseif($Leatest_Trancation->status == 'received')
+                                                                    <span class="badge bg-success text-white">{{ __('Received') }}</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>{{ number_format($Leatest_Trancation->price) }}ETB</td>
+                                                            <td>-{{ number_format($Leatest_Trancation->Ded_amount) }}ETB</td>
+                                                            <td>+{{ number_format($Leatest_Trancation->commission) }}ETB</td>
+                                                            <td>{{ number_format($Leatest_Trancation->current_balance,2) }}ETB</td>
+                                                            {{-- <td>{{ $Leatest_Trancation->user->first_name }} {{ $data->user->last_name }}</td> --}}
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                         {{-- Graph --}}
                         @can('Staff access')
                         <div class="col-12">
@@ -206,6 +254,18 @@
 
             </div>
         </section>
+        <script>
+            window.Echo.channel('staff.' + {{ Auth::user()->id }})
+                .listen('StaffNotificationEvent', (event) => {
+                    console.log('Notification received:', event);
+                    // Update your UI with the received data
+                    // You can use JavaScript to manipulate the DOM and show the notification without refreshing
+                    // For example, you can append a new notification to a list or display a toast message
+                    // Adjust this logic based on your UI framework or preferences
+                    alert('New Notification: ' + event.amountLimit);
+                });
+        </script>
+        
     </main>
 @endsection
 

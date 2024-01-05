@@ -22,15 +22,13 @@
                                 <div class="row mb-3">
 
                                     <div class="container search_select_box">
-                                        <!-- Include the provided HTML code for the select dropdown with search -->
                                         <div class="col-12 col-md-6 mb-3">
-                                            <label for="customers" class="col-form-label">{{ ('Search Phone_No') }}</label>
-                                            <select data-live-search="true" id="customers" class="border custom-select @error('customers') is-invalid @enderror">
+                                            <label for="sender_customers" class="col-form-label">{{ ('Search Phone_No') }}</label>
+                                            <select data-live-search="true" id="sender_customers" class="border custom-select @error('customers') is-invalid @enderror">
                                                 <option selected disabled value="">{{ ('Search Phone Number') }}</option>
                                                 @foreach ($customers_phone_no as $customer)
-                                            <option value="{{ $customer->id }}" data-name="{{ $customer->name }}" data-phone="{{ $customer->phone }}">{{ $customer->phone }}</option>
-                                              @endforeach
-
+                                                    <option value="{{ $customer->id }}" data-name="{{ $customer->name }}" data-phone="{{ $customer->phone }}">{{ $customer->phone }}</option>
+                                                @endforeach
                                             </select>
                                             @error('customers')
                                                 <span class="invalid-feedback">
@@ -39,6 +37,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    
                                     
                                     <div class="col-12 col-md-6 mb-3">
                                         <label for="sender_name" class="col-form-label"><span class="text-danger">*</span>{{ 'Sender Name' }}</label>
@@ -105,48 +104,49 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ 'Receivers Information' }}</h5>
                             <div class="row mb-3">
+                                
+                                <!-- Receiver's Dropdown -->
+<div class="container search_select_box">
+    <div class="col-12 col-md-6 mb-3">
+        <label for="receiver_customers" class="col-form-label">{{ ('Search Phone_No') }}</label>
+        <select data-live-search="true" id="receiver_customers" class="border custom-select @error('customers') is-invalid @enderror">
+            <option selected disabled value="">{{ ('Search Phone Number') }}</option>
+            @foreach ($customers_phone_no as $customer)
+                <option value="{{ $customer->id }}" data-name="{{ $customer->name }}" data-phone="{{ $customer->phone }}">{{ $customer->phone }}</option>
+            @endforeach
+        </select>
+        @error('customers')
+            <span class="invalid-feedback">
+                {{ $message }}
+            </span>
+        @enderror
+    </div>
+</div>
 
-                                <div class="col-12 col-md-6  mb-3">
-                                    <label for="receiver_name" class=" col-form-label"><span
-                                            class="text-danger">*</span>{{ 'Receiver Name' }}</label>
-                                    <input name="receiver_name" value="{{ old('receiver_name') }}"
-                                        class="form-control  @error('receiver_name') is-invalid @enderror" type="text"
-                                        placeholder="Isac Newton"> @error('receiver_name')
-                                        <span class="invalid-feedback">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
+<!-- Receiver's Name Input -->
+<div class="col-12 col-md-6 mb-3">
+    <label for="receiver_name" class="col-form-label"><span class="text-danger">*</span>{{ 'Receiver Name' }}</label>
+    <input name="receiver_name" id="receiver_name" class="form-control @error('receiver_name') is-invalid @enderror" type="text" placeholder="Isac Newton">
+    @error('receiver_name')
+        <span class="invalid-feedback">
+            {{ $message }}
+        </span>
+    @enderror
+</div>
 
-                                {{-- <div class="col-12 col-md-6  mb-3">
-                                    <label for="price" class=" col-form-label"> <span class="text-danger">*</span>
-                                        {{ ('Receiver Phone') }}</label>
-                                    <input name="receiver_phone"value="{{ old('receiver_phone') }}"
-                                        class="form-control   @error('receiver_phone') is-invalid @enderror" type="number"
-                                        id="receiver_phone" placeholder="911******">
-                                    @error('receiver_phone')
-                                        <span class="invalid-feedback">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div> --}}
-
-                                <div class="col-12 col-md-6  mb-3 ">
-                                    <label for="receiver_phone" class=" col-form-label"><span
-                                            class="text-danger">*</span>{{ 'Reciver Phone' }}</label>
-                                    <div class=" input-group">
-                                        <span class="input-group-text" id="basic-addon1">+251</span>
-                                        <input name="receiver_phone"value="{{ old('receiver_phone') }}"
-                                            class="form-control   @error('receiver_phone') is-invalid @enderror"
-                                            type="number" id="receiver_phone" aria-label="phone"
-                                            aria-describedby="basic-addon1" placeholder="911******   ">
-                                    </div>
-                                    @error('receiver_phone')
-                                        <span class="invalid-feedback">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
+<!-- Receiver's Phone Input -->
+<div class="col-12 col-md-6 mb-3">
+    <label for="receiver_phone" class="col-form-label"><span class="text-danger">*</span>{{ 'Receiver Phone' }}</label>
+    <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">+251</span>
+        <input name="receiver_phone" value="{{ old('receiver_phone') }}" class="form-control @error('receiver_phone') is-invalid @enderror" type="number" id="receiver_phone" aria-label="phone" aria-describedby="basic-addon1" placeholder="911******">
+    </div>
+    @error('receiver_phone')
+        <span class="invalid-feedback">
+            {{ $message }}
+        </span>
+    @enderror
+</div>
 
                                 
                                 <div class="container search_select_box">
@@ -189,6 +189,15 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ __('Package Detail') }}</h5>
                             <div class="row mb-3">
+                                <div class="col-md-2 mb-3">
+                                    <label for="package_tag" class="col-form-label">{{ __('Package Tag') }}</label>
+                                    <input name="package_tag" type="text" class="form-control @error('package_tag') is-invalid @enderror" id="package_tag" placeholder="{{ __('Enter Package Tag') }}" autofocus>
+                                    @error('package_tag')
+                                        <span class="invalid-feedback">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
                                 <div class=" col-md-2  mb-3">
                                     <label for=""
                                         class=" col-form-label">{{ __('Package Type') }}</label>
@@ -207,49 +216,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                {{-- <div class="col-12 col-md-3 mb-3"> --}}
-                                    {{-- <label for="from_to" class="col-form-label"> <span class="text-danger">*</span>
-                                        {{ __('From-To Branch') }}</label>
-                                        <select name="from_to" id="from_to"
-                                        class="form-select input-lg dynamic from_to @error('from_to') is-invalid @enderror">
-                                       
-                                        <option selected disabled value="">{{ __('Select From-To branch') }}
-                                        </option>
-                                        @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}">{{ $country->city1 }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('from_to')
-                                        <span class="invalid-feedback">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror --}}
-                                  
-                                        {{-- <label for="combined_city" class="col-form-label">{{ 'Sender City - Receiver City' }}</label>
-                                        <textarea name="combined_city" readonly class="form-control @error('combined_city') is-invalid @enderror" id="combined_city" placeholder="Sender City - Receiver City"></textarea>
-                                        @error('combined_city')
-                                            <span class="invalid-feedback">
-                                                {{ $message }}
-                                            </span>
-                                        @enderror --}}
-{{--                                        
-                                            <label for="from_to" class="col-form-label"> <span class="text-danger">*</span>{{ __('From-To Branch') }}</label>
-                                            <select name="from_to" id="from_to" class="form-select input-lg dynamic from_to @error('from_to') is-invalid @enderror">
-                                                <option selected disabled value="">{{ __('Select From-To branch') }}</option>
-                                                @foreach ($countries as $country)
-                                                    <option value="{{ $country->id }}">{{ $country->city1 }} - {{ $country->city2 }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('from_to')
-                                                <span class="invalid-feedback">
-                                                    {{ $message }}
-                                                </span>
-                                            @enderror
-                                        
-                                    
-                                </div> --}}
-                               
+                                
                                 <div class=" col-md-2  mb-3">
                                     <label for="weight" class="col-form-label"> <span class="text-danger">*</span>
                                         {{ __('weight') }}</label>
@@ -301,7 +268,7 @@
                     <div class="col-md-3">
                         {{-- <button class="btn btn-primary" type="submit">Save</button> --}}
                         <input type="hidden" name="firstBranch" value="{{ json_encode($firstBranch) }}">
-                        <button type="submit" class="btn btn-primary">Save & Print</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </div>
                 </form>
@@ -480,45 +447,53 @@
     
 </script>
 
+<!-- Script for Sender and Receiver -->
 <script>
     $(document).ready(function () {
-        // Initialize Bootstrap Select
-        $('#customers').selectpicker();
+        // Initialize Bootstrap Select for sender_customers
+        $('#sender_customers').selectpicker();
 
-        // Optional: If you want to perform an action when the value changes
-        $('#customers').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
-            // Access the selected value using $(this).val()
-            console.log('Selected value:', $(this).val());
+        // Initialize Bootstrap Select for receiver_customers
+        $('#receiver_customers').selectpicker();
+
+        // Optional: If you want to perform an action when the value changes for sender_customers
+        $('#sender_customers').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+            handleDropdownChange('sender');
+        });
+
+        // Optional: If you want to perform an action when the value changes for receiver_customers
+        $('#receiver_customers').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+            handleDropdownChange('receiver');
         });
 
         // Optional: If you want to capture the form submission
         $('form').submit(function (event) {
-            // Access the selected value using $('#customers').val()
-            console.log('Selected value to be sent in the request:', $('#customers').val());
-
+            console.log('Selected value to be sent in the request for sender_customers:', $('#sender_customers').val());
+            console.log('Selected value to be sent in the request for receiver_customers:', $('#receiver_customers').val());
             // You can also prevent the form submission if needed
             // event.preventDefault();
         });
     });
 
-    // Add an event listener to the customers dropdown
-    $('#customers').change(function () {
-        // Get the selected option
-        var selectedOption = this.options[this.selectedIndex];
+    function handleDropdownChange(type) {
+        var selectedOption;
+        if (type === 'sender') {
+            selectedOption = $('#sender_customers option:selected');
+        } else if (type === 'receiver') {
+            selectedOption = $('#receiver_customers option:selected');
+        }
 
-        // Update the sender_name input with the name from the selected option
-        $('#sender_name').val(selectedOption.getAttribute('data-name'));
-    });
-
-     // Add an event listener to the customers dropdown
-     document.getElementById('customers').addEventListener('change', function() {
-        // Get the selected option
-        var selectedOption = this.options[this.selectedIndex];
-
-        // Update the sender_phone input with the phone number from the selected option
-        document.getElementById('sender_phone').value = selectedOption.getAttribute('data-phone');
-    });
+        // Update the corresponding input fields with the data from the selected option
+        $('#' + type + '_name').val(selectedOption.data('name'));
+        $('#' + type + '_phone').val(selectedOption.data('phone'));
+    }
 </script>
+
+
+
+
+
+
 
 
       
@@ -556,6 +531,10 @@
      @if ($errors->has('receiver_phone'))
          toastr.error("{{ $errors->first('receiver_phone') }}");
      @endif
+     // Toastr notification for package_tag validation error
+    @if ($errors->has('package_tag'))
+        toastr.error("{{ $errors->first('package_tag') }}");
+    @endif
     </script>
      
 @endsection

@@ -16,7 +16,7 @@
                 </a>
                 </a>
 
-                {{-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     @foreach (Config::get('languages') as $lang => $language)
                         @if ($lang != App::getLocale())
                             <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"><span
@@ -24,68 +24,52 @@
                                 {{ $language['display'] }}</a>
                         @endif
                     @endforeach
-                </ul> --}}
+                </ul>
             </div>
 
 
             <li class="nav-item d-block d-lg-none"> <a class="nav-link nav-icon search-bar-toggle " href="#">
                     <i class="bi bi-search"></i> </a></li>
-            <li class="nav-item dropdown">
-                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown"> <i class="bi bi-bell"></i>
-                    <span class="badge bg-primary badge-number">4</span> </a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                    <li class="dropdown-header"> You have 4 new notifications <a href="#"><span
-                                class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li class="notification-item">
-                        <i class="bi bi-exclamation-circle text-warning"></i>
-                        <div>
-                            <h4>Lorem Ipsum</h4>
-                            <p>Quae dolorem earum veritatis oditseno</p>
-                            <p>30 min. ago</p>
-                        </div>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li class="notification-item">
-                        <i class="bi bi-x-circle text-danger"></i>
-                        <div>
-                            <h4>Atque rerum nesciunt</h4>
-                            <p>Quae dolorem earum veritatis oditseno</p>
-                            <p>1 hr. ago</p>
-                        </div>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li class="notification-item">
-                        <i class="bi bi-check-circle text-success"></i>
-                        <div>
-                            <h4>Sit rerum fuga</h4>
-                            <p>Quae dolorem earum veritatis oditseno</p>
-                            <p>2 hrs. ago</p>
-                        </div>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li class="notification-item">
-                        <i class="bi bi-info-circle text-primary"></i>
-                        <div>
-                            <h4>Dicta reprehenderit</h4>
-                            <p>Quae dolorem earum veritatis oditseno</p>
-                            <p>4 hrs. ago</p>
-                        </div>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li class="dropdown-footer"> <a href="#">Show all notifications</a></li>
-                </ul>
-            </li>
+                    <li class="nav-item d-block d-lg-none"> <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i> </a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown"> <i class="bi bi-bell"></i>
+                        @foreach (Auth::user()->unreadnotifications as $not)
+                        <span class="badge bg-danger badge-number w-4"
+                            style="width
+                        100px">{{ $loop->iteration }}</span>
+                    @endforeach   </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                        @forelse (Auth::user()->unreadnotifications as $not)
+                            @if ($not->type === 'App\Notifications\staffNotification')
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li class="notification-item">
+                                    <i class="bi bi-check-circle text-success"></i>
+                                    <div>
+                                        <p>{{ $not->data['fname'] }} {{ $not->data['mname'] }}</p>
+                                        <h4> {{ $not->data['limit'] }} Birr</h4>
+                                        <p>{{__('Limit is updated')}}</p>
+                                        <a href="{{ route('markasread', $not->id) }}"
+                                            class="text-danger ms-auto markasread ">{{__('Mark as read')}}</a>
+                                    </div>
+                                </li>
+                                @endif
+                                @empty
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li class="notification-item">
+                                    <i class="bi bi-check-circle text-success"></i>
+                                    <div>
+                                        <p>{{__('No record found')}}</p>
+                                    </div>
+                                </li>
+                                @endforelse
+                    </ul>
+                </li>
+                
             <li class="nav-item dropdown">
                 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown"> <i
                         class="bi bi-chat-left-text"></i> <span class="badge bg-success badge-number">3</span> </a>

@@ -1,4 +1,3 @@
-
 @extends('admin.body.admin_master')
 @section('main')
     <main id="main" class="main">
@@ -16,7 +15,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <table class="table datatable ">
+                            <table class="table datatable" id="transactionTable">
                                 <thead class="text-capitalize">
                                     <tr>
                                         <th scope="col">{{ __('ID') }}</th>
@@ -26,30 +25,28 @@
                                         <th scope="col">{{ __('Ded_amount') }}</th>
                                         <th scope="col">{{ __('Commission') }}</th>
                                         <th scope="col">{{ __('Closing Balance') }}</th>
-                                        <th scope="col">{{ __('Transaction Done By') }}</th>        
+                                        <th scope="col">{{ __('Transaction Done By') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                    </tr>
-                                    @foreach ($data as $data)
+                                    @foreach ($data as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $data->created_at }}</td>
+                                            <td>{{ $item->created_at }}</td>
                                             <td>
-                                                @if ($data->status == 'collected')
-                                                <span class="badge bg-warning text-white">{{ __('Collected') }}</span>
-                                                @elseif($data->status == 'in-transit')
+                                                @if ($item->status == 'collected')
+                                                    <span class="badge bg-warning text-white">{{ __('Collected') }}</span>
+                                                @elseif($item->status == 'in-transit')
                                                     <span class="badge bg-warning text-dark">{{ __('In-Transit') }}</span>
-                                                @elseif($data->status == 'delivered')
-                                                    <span class="badge bg-success text-white">{{ __('Delivered') }}</span>
+                                                @elseif($item->status == 'received')
+                                                    <span class="badge bg-success text-white">{{ __('Received') }}</span>
                                                 @endif
                                             </td>
-                                            <td>{{ $data->price }}ETB</td>
-                                            <td>-{{ $data->Ded_amount }}ETB</td>
-                                            <td>+{{ $data->commission }}ETB</td>
-                                            <td>{{ $data->current_balance }}ETB</td>
-                                            <td>{{ $data->user->first_name }} {{ $data->user->last_name }}</td>
+                                            <td>{{ number_format($item->price) }}ETB</td>
+                                            <td>-{{ number_format($item->Ded_amount) }}ETB</td>
+                                            <td>+{{ number_format($item->commission) }}ETB</td>
+                                            <td>{{ number_format($item->current_balance, 2) }}ETB</td>
+                                            <td>{{ $item->user->first_name }} {{ $item->user->last_name }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -57,10 +54,37 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div
         </section>
     </main>
+
+    <!-- DataTables JS and Buttons Extension -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize DataTable with buttons
+            var table = $('#transactionTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+
+        function printPage() {
+            window.print();
+        }
+    </script>
+
+    <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    <!-- Toastr Notifications -->
     @if (Session::has('success'))
         <script>
             toastr.options = {
@@ -80,6 +104,7 @@
         </script>
     @endif
 
+    <!-- Show modal on error -->
     @if ($errors->any())
         <script>
             $(document).ready(function() {
@@ -88,3 +113,5 @@
         </script>
     @endif
 @endsection
+
+

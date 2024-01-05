@@ -33,6 +33,8 @@
                                         <th scope="col">{{ __('Email') }}</th>
                                         <th scope="col">{{ __('Role') }}</th>
                                         <th scope="col">{{ __('amount_limit') }}</th>
+                                        <th scope="col">{{ __('Status') }}</th>
+                                        {{-- <th scope="col">{{ __('Status') }}</th> --}}
                                         
                                         {{-- <th scope="col">{{ __('Status') }}</th> --}}
                                         <th scope="col">{{ __('Action') }}</th>
@@ -57,20 +59,37 @@
                                             <td>{{ $data->amount_limit }}</td>
 
                                             {{-- Status badge --}}
-                                            {{-- <td>
-                                                @if ($data->status == 'collected')
-                                                    <span class="badge bg-success text-white">{{ __('Collected') }}</span>
-                                                @elseif($data->status == 'in-transit')
-                                                    <span class="badge bg-warning text-dark">{{ __('In-Transit') }}</span>
-                                                @elseif($data->status == 'deliverd')
-                                                    <span class="badge bg-success text-white">{{ __('Delivered') }}</span>
+                                            <td>
+                                                @if ($data->status == 'active')
+                                                    <span class="badge bg-success text-white">{{ __('active') }}</span>
+                                                @elseif($data->status == 'deactive')
+                                                    <span class="badge bg-danger text-white">{{ __('deactive') }}</span>
                                                 @endif
-                                            </td> --}}
+                                            </td>
 
+                                            {{-- <td>
+                                                <div class="dropdown ">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-id="{{ $data->id }}">
+                                                    </button>
+                                                    
+                                                    <ul class="dropdown-menu text-center">
+                                                        <li>
+                                                            @if ($data->status == 'active')
+                                                            <a href="#" class="btn btn-success btn-sm tooltip-test update-status" data-status="Deactive" title="Mark as Deactive">
+                                                                {{ __('Deactive') }}
+                                                            </a>
+                                                        @endif
+                                                        </li>
+                                                            
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            
+                                            </td> --}}
                                             {{-- Action --}}
                                             <td>
                                                 @can('Staff edit')
-                                                    
+                                                
                                                 <a class="text-primary" href="" data-bs-toggle="modal"
                                                     data-bs-target="#edit{{ $data->id }}">
                                                     <i class="fa-sharp fa-solid fa-pencil"></i>
@@ -81,14 +100,50 @@
                                                 <a href="" data-bs-toggle="modal"
                                                     data-bs-target="#delete{{ $data->id }}"><i
                                                         class="fa-sharp fa-solid fa-trash text-danger"></i></a>
+                                                 <a href="" class="badge bg-dark text-light" data-bs-toggle="modal" data-bs-target="#payment{{ $data->id }}"
+                                                         
+                                                               >
+                                                       <i class="fa-sharp fa-solid fa-add"></i> {{ __('Limit') }}
+                                                    </a>
                                                         @endcan
                                                 {{-- 
                                                     <a href="{{ route('products.show', $data->id) }}">
                                                     <i class="fa-sharp fa-solid fa-eye text-success"></i></a> --}}
                                             </td>
                                         </tr>
+{{-- Deposit Modal --}}
+<div class="modal fade" id="payment{{$data->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h1 class="text-center fs-7 mx-auto" id="staticBackdropLabel">{{ __('Limit') }}</h1>
 
-                                        {{-- Edit modal start --}}
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST"
+                action="{{ route('limit.update', $data->id) }}"
+                class="text-capitalize">
+                @csrf
+                @method('PATCH')
+                <div class="mb-2">
+                    <label for="balance"> <span class="text-danger">*</span>{{ __('Limit') }}</label>
+                    <input name="amount_limit" type="number" class="form-control" placeholder="{{ __('Amount limit') }}">
+                </div>
+            </div>
+            <div class="text-center mt-2 mb-2">
+                {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
+                <button type="submit"
+                    class="btn btn-primary text-center">{{ __('Submit') }}</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+                                        
+                                          {{-- Edit modal start --}}
 <div class="modal fade" id="edit{{ $data->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -177,6 +232,20 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="status" class="col-form-label">{{ __('Status') }}</label>
+                                            <select name="status" class="form-control @error('status') is-invalid @enderror">
+                                                <option value="active" {{ $data->status == 'active' ? 'selected' : '' }}>Active</option>
+                                                <option value="deactive" {{ $data->status == 'deactive' ? 'selected' : '' }}>Deactive</option>
+                                            </select>
+                                            @error('status')
+                                                <span class="invalid-feedback">
+                                                    {{ $message }}
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -193,6 +262,7 @@
     </div>
 </div>
 {{-- Edit modal end --}}
+
 
 
                                         {{-- Delete modal start --}}
@@ -239,6 +309,8 @@
         </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
 
     @if (Session::has('success'))
         <script>

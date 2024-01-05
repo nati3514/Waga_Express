@@ -23,6 +23,7 @@ class User extends Authenticatable
         'amount_limit',
         'first_name',
         'last_name',
+        'status',
         'email',
         'password',
     ];

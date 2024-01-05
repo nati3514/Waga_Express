@@ -51,14 +51,26 @@ Route::patch('/Staff/update-staff/{id}', [App\Http\Controllers\StaffController::
 Route::delete('/Staff/delete/{id}', [App\Http\Controllers\StaffController::class, 'destroy'])->name('staff.delete');
 Route::post('/Staff/save', [App\Http\Controllers\StaffController::class, 'store'])->name('staff.store');
 
+
 Route::get('/Transacton/payment', [App\Http\Controllers\TranscationController::class, 'index'])->name('transaction.view_deposit');
 Route::get('/Transacton/history', [App\Http\Controllers\TranscationController::class, 'transaction_history'])->name('transaction.view_history');
 Route::get('/Transaction/reports', [App\Http\Controllers\TranscationController::class, 'reports'])->name('transaction.report');
 
 Route::get('/packages/received-packages/list', [App\Http\Controllers\ProductController::class, 'received_package'])->name('received_package.list');
-Route::get('/receive-packages/{id}', [App\Http\Controllers\ProductController::class, 'receive_package'])->name('receive.package');
+// Route::post('/receive-package', [App\Http\Controllers\ProductController::class, 'receive_package'])->name('receive.package');
+Route::post('/update-package-status', [App\Http\Controllers\ProductController::class, 'updatePackageStatus'])->name('update-package-status');
 
 
+Route::match(['get', 'post'], '/receive-package', [App\Http\Controllers\ProductController::class, 'receivePackage'])->name('receive.package');
+// Route::post('/mark-package-received/{id}', [App\Http\Controllers\ProductController::class, 'markPackageReceived'])->name('mark.package.received');
+
+
+Route::get('/packages/delivered-packages/list', [App\Http\Controllers\ProductController::class, 'delivered_package'])->name('delivered_package.list');
+
+Route::get('/print/{id}', [App\Http\Controllers\StaffController::class, 'printPreview'])->name('print');
+Route::patch('/Staff/limit/{id}', [App\Http\Controllers\StaffController::class, 'limit'])->name('limit.update');
+
+Route::get('/markasread/{id}',[StaffController::class, 'markasread'])->name('markasread');
 
 Route::get('/fallback', [App\Http\Controllers\HomeController::class, 'fallback'])->name('fallback');
 });
