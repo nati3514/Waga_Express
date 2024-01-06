@@ -254,18 +254,6 @@
 
             </div>
         </section>
-        <script>
-            window.Echo.channel('staff.' + {{ Auth::user()->id }})
-                .listen('StaffNotificationEvent', (event) => {
-                    console.log('Notification received:', event);
-                    // Update your UI with the received data
-                    // You can use JavaScript to manipulate the DOM and show the notification without refreshing
-                    // For example, you can append a new notification to a list or display a toast message
-                    // Adjust this logic based on your UI framework or preferences
-                    alert('New Notification: ' + event.amountLimit);
-                });
-        </script>
-        
     </main>
 @endsection
 
