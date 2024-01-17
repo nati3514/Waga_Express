@@ -14,7 +14,7 @@
                     </div>
                     <div class="ms-3">
                         <h5>Office Address</h5>
-                        <span>123 Street, New York, USA</span>
+                        <span>22 Street,  Addis Abeba, Ethiopia</span>
                     </div>
                 </div>
                 <hr>

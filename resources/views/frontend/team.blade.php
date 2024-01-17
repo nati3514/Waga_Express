@@ -23,7 +23,7 @@
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="team-item">
                     <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="{{ asset('frontend/assets/img/team-2.jpg') }}" alt="">
+                        <img class="img-fluid w-100" src="{{ asset('frontend/assets/img/dagi.jpg') }}" alt="">
                         <div class="team-social">
                             <a class="btn btn-square btn-light mx-1" href=""><i
                                     class="fab fa-facebook-f"></i></a>
@@ -34,31 +34,32 @@
                         </div>
                     </div>
                     <div class="text-center p-4">
-                        <h5 class="mb-1">Nati Age</h5>
-                        <span>Programmer</span>
+                        <h5 class="mb-1">Dagmawi Fitsum </h5>
+                        <span>CEO & Founder of WagaExpress</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item">
                     <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="{{ asset('frontend/assets/img/team-3.jpg') }}" alt="">
+                        <img class="img-fluid w-100" src="{{ asset('frontend/assets/img/pp.JPG') }}" alt="">
                         <div class="team-social">
-                            <a class="btn btn-square btn-light mx-1" href=""><i
-                                    class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-light mx-1" href=""><i
+                            <a class="btn btn-square btn-light mx-1" href="https://github.com/nati3514"><i
+                                    class="fab fa-github"></i></a>
+                            <a class="btn btn-square btn-light mx-1" href="https://github.com/nati3514"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-square btn-light mx-1" href="https://github.com/nati3514"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-light mx-1" href="https://www.linkedin.com/feed/"><i
                                     class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-square btn-light mx-1" href="https://www.youtube.com/@natitech8150"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                     <div class="text-center p-4">
-                        <h5 class="mb-1">nati</h5>
-                        <span>frontend developer</span>
+                        <h5 class="mb-1">Natnael</h5>
+                        <span>Full-Stack Developer of WagaExpress</span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+            {{-- <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="team-item">
                     <div class="position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="{{ asset('frontend/assets/img/team-4.jpg') }}" alt="">
@@ -98,7 +99,7 @@
                         <span>Ui/Ux designer</span>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

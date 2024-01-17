@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StaffTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 use App\Models\User as ModelsUser;
@@ -66,7 +67,7 @@ class TranscationController extends Controller
      public function index()
     {
         
-        $data = User::all();
+        $data = StaffTransaction::join('branches', 'branches.id', '=', 'staff_transactions.branch_id')->get();
         return view('admin.transaction.view_transcation',compact('data'));
     }
     public function transaction_history()
@@ -140,5 +141,30 @@ class TranscationController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function deposit(Request $request){
+        $request->validate([
+            'bank_name' => "required",
+            'deposit_amount' => "required|numeric|min:0",
+            'date' => "required",
+            'reference_number' => "required",
+            'receipt' => "required|mimes:jpg,png,jpeg",
+        ]);
+
+        $uniqueName = uniqid('image_') . '_' . time() . '.' . $request->receipt->extension();
+        // $request->receipt->move(public_path('images'), $uniqueName);
+
+        $user = Auth::user();
+
+        StaffTransaction::create([
+            'branch_id' => $user->branch_Id,
+            'bank_name' => $request->bank_name,
+            'deposit_amount' => $request->deposit_amount,
+            'date' => $request->date,
+            'reference_num' => $request->reference_number,
+            'image' => $uniqueName,
+        ]);
+        return redirect(route('transaction.view_deposit'))->with('success', 'Deposit requested successfully');
     }
 }

@@ -221,29 +221,11 @@ class DatabaseSeeder extends Seeder
             'percent'=>30,
         ]);
         Percent::create([
-            'status'=>'received',
+            'status'=>'delivered',
             'percent'=>20,
         ]);
 
-        // $superAdmin = User::create([
-        //     'branch_Id'=>2,
-        //     'amount_limit'=>0,
-        //     'first_name'=>'dagi',
-        //     'last_name'=>'dagi',
-        //     'email'=>'dag@gmail.com',
-        //     'password'=>'12345678',
-        // ]);
-        
-        $Admin1 = User::create([
-            'branch_Id'=>1,
-            'amount_limit'=>0,
-            'first_name'=>'nati',
-            'last_name'=>'age',
-            'status'=>'active',
-            'email'=>'natiage@gmail.com',
-            'password'=>'12345678',
-        ]);
-        $Admin2 = User::create([
+        $superAdmin = User::create([
             'branch_Id'=>2,
             'amount_limit'=>0,
             'first_name'=>'dagi',
@@ -252,7 +234,15 @@ class DatabaseSeeder extends Seeder
             'email'=>'dagi@gmail.com',
             'password'=>'12345678',
         ]);
-        
+        $Admin = User::create([
+            'branch_Id'=>1,
+            'amount_limit'=>0,
+            'first_name'=>'nati',
+            'last_name'=>'age',
+            'status'=>'active',
+            'email'=>'natiage@gmail.com',
+            'password'=>'12345678',
+        ]);
         $cashier = User::create([
             'branch_Id'=>3,
             'amount_limit'=>0,
@@ -262,10 +252,12 @@ class DatabaseSeeder extends Seeder
             'email'=>'noya@gmail.com',
             'password'=>'12345678',
         ]);
-        // $superAdmin_role = Role::create(['name' => 'superAdmin']);
+        $superAdmin_role = Role::create(['name' => 'superAdmin']);
         $admin_role = Role::create(['name' => 'admin']);
         $cashier_role = Role::create(['name' => 'cashier']);
-        
+        $accountant_role = Role::create(['name' => 'accountant']);
+        $customerService_role = Role::create(['name' => 'customerService']);
+
         Permission::create(['name' => 'Packages access']);
         Permission::create(['name' => 'Packages add']);
         Permission::create(['name' => 'Packages edit']);
@@ -275,12 +267,12 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name' => 'Staff edit']);
         Permission::create(['name' => 'Staff delete']);
 
-        // $superAdminPermissions = [
-        //     'Staff access',
-        //     'Staff add',
-        //     'Staff edit',
-        //     'Staff delete',
-        // ];
+        $superAdminPermissions = [
+            'Staff access',
+            'Staff add',
+            'Staff edit',
+            'Staff delete',
+        ];
         $adminPermissions =[
             'Staff access',
             'Staff add',
@@ -294,12 +286,15 @@ class DatabaseSeeder extends Seeder
             'Packages delete',
         ];
 
-        // $superAdmin_role -> givePermissionTo($superAdminPermissions);
+        $superAdmin_role -> givePermissionTo($superAdminPermissions);
         $admin_role -> givePermissionTo($adminPermissions);
         $cashier_role -> givePermissionTo($cashierPermissions);
-        $Admin1->assignRole($admin_role);
-        $Admin2->assignRole($admin_role);  
+        $accountant_role->givePermissionTo($cashierPermissions);
+        $customerService_role->givePermissionTo($cashierPermissions);
+
+        $Admin->assignRole($admin_role);
         $cashier->assignRole($cashier_role);
+        $superAdmin->assignRole($superAdmin_role);
 
     }
 }

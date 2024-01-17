@@ -6,9 +6,9 @@
         <div class="row g-5">
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                 <div class="row g-2 ">
-                    <div class="col-6">
+                    {{-- <div class="col-6">
                         <img class="img-fluid" src="{{ asset('frontend/assets/img/IMG_1787.jpg') }}">
-                    </div>
+                    </div> --}}
                     <div class="col-6">
                         <img class="img-fluid" src="{{ asset('frontend/assets/img/IMG_1657.jpg') }}">
                     </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                 <h1 class="display-6 mb-4">Your Partner in Success</h1>
-                <p class="mb-4">Whether you're a business looking to expand globally or an individual sending a special package, wagaDHL is your dedicated partner. We understand your unique needs and are committed to helping you achieve your shipping goals.</p>
+                <p class="mb-4">Whether you're a business looking to expand globally or an individual sending a special package, WagaExpress is your dedicated partner. We understand your unique needs and are committed to helping you achieve your shipping goals.</p>
                 <div class="row g-4 g-sm-5 justify-content-center">
                     <div class="col-sm-6">
                         <div class="about-fact btn-square flex-column rounded-circle bg-primary ms-sm-auto">

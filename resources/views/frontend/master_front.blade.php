@@ -95,11 +95,14 @@
 
     <!-- Video Modal Start -->
 
-    {{-- @include('frontend.videomodal') --}}
+    @include('frontend.videomodal')
     <!-- Video Modal End -->
 
     <!-- Service Start -->
-    {{-- @include('frontend.services') {{-- @include('frontend.services') --}}
+    
+
+
+    @include('frontend.services')
     <!-- Service End -->
 
     <!-- Appoinment Start -->
@@ -113,7 +116,7 @@
     <!-- Team End -->
 
     <!-- Testimonial Start -->
-    {{-- @include('frontend.testimonial') --}}
+    @include('frontend.testimonial') 
 
     <!-- Testimonial End -->
 

@@ -53,6 +53,7 @@ Route::post('/Staff/save', [App\Http\Controllers\StaffController::class, 'store'
 
 
 Route::get('/Transacton/payment', [App\Http\Controllers\TranscationController::class, 'index'])->name('transaction.view_deposit');
+Route::post('/Transacton/payment/deposit', [App\Http\Controllers\TranscationController::class, 'deposit'])->name('deposit_balance');
 Route::get('/Transacton/history', [App\Http\Controllers\TranscationController::class, 'transaction_history'])->name('transaction.view_history');
 Route::get('/Transaction/reports', [App\Http\Controllers\TranscationController::class, 'reports'])->name('transaction.report');
 

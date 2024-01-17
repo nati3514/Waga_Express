@@ -28,46 +28,40 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
+                            <form method="POST" action="{{route('deposit_balance')}}" enctype="multipart/form-data">
+                                @csrf
                             <div class="modal-body">
+                              
                                 <div class="mb-2">
-                                    <label for="product"> <span class="text-danger">*</span> {{ __('Product') }}</label>
-                                    <select name="" id="" class="form-select">
-                                        <option value="" selected disabled>{{ __('Select Product') }}</option>
-                                        <option value="">option 1</option>
-                                        <option value="">option 1</option>
-                                        <option value="">option 1</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-2">
-                                    <label for="product"> <span class="text-danger">*</span>{{ __('Bank') }}</label>
-                                    <input type="text" class="form-control" placeholder="{{ __('Bank') }}">
+                                    <label for="bank_name"> <span class="text-danger">*</span>{{ __('Bank') }}</label>
+                                    <input name="bank_name" type="text" class="form-control" placeholder="{{ __('Bank') }}">
                                 </div>
                                 <div class="mb-2">
-                                    <label for="product"> <span class="text-danger">*</span>
+                                    <label for="deposit_amount"> <span class="text-danger">*</span>
                                         {{ __('Deposit Amount') }}</label>
-                                    <input type="text" class="form-control" placeholder="{{ __('Deposit Amount') }}">
+                                    <input name="deposit_amount" type="number" class="form-control" placeholder="{{ __('Deposit Amount') }}">
                                 </div>
                                 <div class="mb-2">
-                                    <label for="product"> <span class="text-danger">*</span> {{ __('Date') }}</label>
-                                    <input type="date" class="form-control" placeholder="{{ __('Date') }}"">
+                                    <label for="date"> <span class="text-danger">*</span> {{ __('Date') }}</label>
+                                    <input name="date" type="date" class="form-control" placeholder="{{ __('Date') }}"">
                                 </div>
                                 <div class="mb-2">
-                                    <label for="product"> <span class="text-danger">*</span>
+                                    <label for="reference_number"> <span class="text-danger">*</span>
                                         {{ __('Reference Number') }}</label>
-                                    <input type="text" class="form-control" placeholder="{{ __('Ref.Number') }}">
+                                    <input name="reference_number" type="text" class="form-control" placeholder="{{ __('Ref.Number') }}">
                                 </div>
                                 <div class="mb-2">
-                                    <label for="product"> <span class="text-danger">*</span>
+                                    <label for="receipt"> <span class="text-danger">*</span>
                                         {{ __('Upload Receipt') }}</label>
-                                    <input type="file" class="form-control" placeholder="{{ __('Upload Receipt') }}">
+                                    <input name="receipt" type="file" class="form-control" placeholder="{{ __('Upload Receipt') }}">
                                 </div>
                             </div>
-                            <div class="text-center mt-2">
+                            <div class="text-center mt-2 mb-2">
                                 {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-                                <button type="button"
+                                <button type="submit"
                                     class="btn btn-primary text-center">{{ __('Confirm Payment') }}</button>
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -76,18 +70,17 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="text-danger">Sample info used from users Table edit data in controller before
-                                use</h4>
                             <table class="table datatable ">
                                 <thead class="text-capitalize">
                                     <tr>
-                                        <th scope="col">{{ __('ID') }}</th>
-                                        <th scope="col">{{ __('Product Name') }}</th>
-                                        <th scope="col">{{ __('Amount') }}</th>
+                                        <th scope="col">{{ __('#') }}</th>
+                                        <th scope="col">{{ __('Branch') }}</th>
                                         <th scope="col">{{ __('Bank') }}</th>
+                                        <th scope="col">{{ __('Amount') }}</th>
                                         <th scope="col">{{ __('Reference Number') }}</th>
                                         <th scope="col">{{ __('Date') }}</th>
-                                        <th scope="col">{{ __('Status') }}</th>
+                                        {{-- <th scope="col">{{ __('Image') }}</th> --}}
+                                        {{-- <th scope="col">{{ __('Action') }}</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -96,11 +89,12 @@
                                     @foreach ($data as $data)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $data->name }}</td>
-                                            <td>{{ $data->email }}</td>
-                                            <td>{{ $data->email_verified_at }}</td>
-                                            <td>{{ $data->email_verified_at }}</td>
-                                            <td>{{ $data->email_verified_at }}</td>
+                                            <td>{{ $data->branch_name }}</td>
+                                            <td>{{ $data->bank_name }}</td>
+                                            <td>{{ $data->deposit_amount }}</td>
+                                            <td>{{ $data->reference_num }}</td>
+                                            <td>{{ $data->date }}</td>
+                                            {{-- <td><img src="{{ asset('images/' . $data->image ) }}" alt="image" width="50px" height="50px"></td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -131,11 +125,11 @@
         </script>
     @endif
 
-    @if ($errors->any())
+    {{-- @if ($errors->any())
         <script>
             $(document).ready(function() {
                 $('#addnew{{ $test->item_id }}').modal('show');
             });
         </script>
-    @endif
+    @endif --}}
 @endsection
