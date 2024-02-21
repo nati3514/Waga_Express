@@ -24,7 +24,7 @@
                             <div class="icon-box-light">
                                 <i class="bi bi-award text-dark"></i>
                             </div>
-                            <h1 class="display-1 text-white mb-0" data-toggle="counter-up">25</h1>
+                           
                             <small class="fs-5 text-white">Years Experience</small>
                         </div>
                     </div>
