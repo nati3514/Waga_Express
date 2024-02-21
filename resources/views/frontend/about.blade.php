@@ -46,12 +46,7 @@
                             <h1 class="text-white mb-0" data-toggle="counter-up">9999</h1>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="about-fact mt-n130 btn-square flex-column rounded-circle bg-dark mx-sm-auto">
-                            <p class="text-white mb-0">Happy Clients</p>
-                            <h1 class="text-white mb-0" data-toggle="counter-up">9999</h1>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
