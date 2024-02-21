@@ -25,7 +25,7 @@
                                
                             </div>
                            
-                            <small class="fs-5 text-white">Years Experience</small>
+                           
                         </div>
                     </div>
                 </div>
