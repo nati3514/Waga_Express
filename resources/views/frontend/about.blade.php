@@ -35,10 +35,7 @@
                 <p class="mb-4">Whether you're a business looking to expand globally or an individual sending a special package, wagaDHL is your dedicated partner. We understand your unique needs and are committed to helping you achieve your shipping goals.</p>
                 <div class="row g-4 g-sm-5 justify-content-center">
                     <div class="col-sm-6">
-                        <div class="about-fact btn-square flex-column rounded-circle bg-primary ms-sm-auto">
-                            <p class="text-white mb-0">Awards Winning</p>
-                            <h1 class="text-white mb-0" data-toggle="counter-up">9999</h1>
-                        </div>
+                       
                     </div>
                     
                     
