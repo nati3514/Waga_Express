@@ -32,7 +32,7 @@
             </div>
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                 <h1 class="display-6 mb-4">Your Partner in Success</h1>
-                <p class="mb-4">Whether you're a business looking to expand globally or an individual sending a special package, wagaDHL is your dedicated partner. We understand your unique needs and are committed to helping you achieve your shipping goals.</p>
+                >
                 
                     
                 </div>
