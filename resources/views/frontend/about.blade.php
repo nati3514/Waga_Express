@@ -30,12 +30,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                
-                
-                    
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>
