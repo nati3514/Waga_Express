@@ -31,8 +31,7 @@
                 </div>
             </div>
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                <h1 class="display-6 mb-4">Your Partner in Success</h1>
-                >
+                
                 
                     
                 </div>
