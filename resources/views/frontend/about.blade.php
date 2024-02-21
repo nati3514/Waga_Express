@@ -19,12 +19,7 @@
                         <img class="img-fluid" src="{{ asset('frontend/assets/img/AGE_2272.jpg') }}">
                     </div>
                     <div class="col-6">
-                        <div
-                            class="bg-primary w-100 h-100 mt-n5 ms-n5 d-flex flex-column align-items-center justify-content-center">
-                            
-                           
-                           
-                        </div>
+                        
                     </div>
                 </div>
             </div>
