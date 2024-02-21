@@ -16,7 +16,7 @@
                         <img class="img-fluid" src="{{ asset('frontend/assets/img/IMG_1911.jpg') }}">
                     </div>
                     <div class="col-6">
-                        <img class="img-fluid" src="{{ asset('frontend/assets/img/AGE_2272.jpg') }}">
+                        
                     </div>
                     <div class="col-6">
                         
