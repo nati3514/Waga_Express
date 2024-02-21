@@ -22,7 +22,7 @@
                         <div
                             class="bg-primary w-100 h-100 mt-n5 ms-n5 d-flex flex-column align-items-center justify-content-center">
                             <div class="icon-box-light">
-                                <i class="bi bi-award text-dark"></i>
+                               
                             </div>
                            
                             <small class="fs-5 text-white">Years Experience</small>
