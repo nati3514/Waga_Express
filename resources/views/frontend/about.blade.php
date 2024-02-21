@@ -40,12 +40,7 @@
                             <h1 class="text-white mb-0" data-toggle="counter-up">9999</h1>
                         </div>
                     </div>
-                    <div class="col-sm-6 text-start">
-                        <div class="about-fact btn-square flex-column rounded-circle bg-secondary me-sm-auto">
-                            <p class="text-white mb-0">Complete Cases</p>
-                            <h1 class="text-white mb-0" data-toggle="counter-up">9999</h1>
-                        </div>
-                    </div>
+                    
                     
                 </div>
             </div>
