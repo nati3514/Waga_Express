@@ -65,7 +65,7 @@
                     <div class="col-12">
                         <div class="form-floating">
                             
-                            <label for="message">Message</label>
+
                         </div>
                     </div>
                    
