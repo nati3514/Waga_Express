@@ -59,7 +59,7 @@
                                 <option selected>Service 5</option>
 
                             </select>
-                            <label for="service">Choose A Service</label>
+                           
                         </div>
                     </div>
                     <div class="col-12">
