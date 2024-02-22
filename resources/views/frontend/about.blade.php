@@ -12,9 +12,7 @@
                     <div class="col-6">
                         <img class="img-fluid" src="{{ asset('frontend/assets/img/IMG_1657.jpg') }}">
                     </div>
-                    <div class="col-6">
-                        
-                    </div>
+                    
                     
                    
                 </div>
