@@ -7,7 +7,7 @@
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                 <div class="row g-2 ">
                     <div class="col-6">
-                        <img class="img-fluid" src="{{ asset('frontend/assets/img/IMG_1787.jpg') }}">
+                        
                     </div>
                     
                     
