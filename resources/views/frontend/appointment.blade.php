@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="col-12 text-center">
-                        <button class="btn btn-primary w-100 py-3" type="submit">Submit Now</button>
+                      
                     </div>
                 </div>
             </div>
