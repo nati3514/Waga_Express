@@ -135,3 +135,12 @@ public function printPreview(string $id){
         $weight = WeightPrice::where('id', $data->weight)->first();
             return view('admin.staff.print', compact('data','price','weight'));
     }
+public function destroy(string $id)
+    {
+        User::where('id', $id)->update([
+            'status' => 'inactive',
+        ]);
+        return redirect(route('staff.index'))->with('success', 'successfully deleted');
+    }
+   
+}
