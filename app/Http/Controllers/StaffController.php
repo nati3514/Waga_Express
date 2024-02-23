@@ -110,3 +110,23 @@ public function markasread($id){
         }
         return back();
     }
+public function printPreview(string $id){
+        $data = DB::table('packages')
+        ->join('customers as t1', 't1.id', '=', 'packages.sender_ID')
+        ->join('customers as t2', 't2.id', '=', 'packages.receiver_ID')
+        ->join('branches as t3', 't3.id', '=', 'packages.from_branch_id')
+        ->join('branches as t4', 't4.id', '=', 'packages.to_branch_id')
+        ->select(
+            'packages.*',
+            't1.name as sender_name',
+            't1.phone as sender_phone',
+            't1.city as sender_city',
+            't3.branch_name as sender_branch',
+            't2.name as receiver_name',
+            't2.phone as receiver_phone',
+            't2.city as receiver_city',
+            't4.branch_name as receiver_branch'
+        )
+        ->where('packages.id', $id)
+        // ->where('packages.status', 'collected') 
+        ->first();
