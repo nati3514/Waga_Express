@@ -64,3 +64,7 @@ public function store(Request $request)
         $user->syncRoles('cashier');
         return redirect(route('staff.index'))->with('success', 'Staff successfully added');
     }
+public function show(string $id)
+    {
+        //
+    }
