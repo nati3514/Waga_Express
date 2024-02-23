@@ -130,3 +130,8 @@ public function printPreview(string $id){
         ->where('packages.id', $id)
         // ->where('packages.status', 'collected') 
         ->first();
+        // dd($data);
+        $price = Transaction::where('package_id_fk', $data->id)->first();
+        $weight = WeightPrice::where('id', $data->weight)->first();
+            return view('admin.staff.print', compact('data','price','weight'));
+    }
