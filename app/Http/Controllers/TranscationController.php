@@ -79,3 +79,16 @@ public function index()
         ->get();
         return view('admin.transaction.view_transcation',compact('data'));
     }
+ public function transaction_history()
+    {
+        $user = Auth::user();
+        If(Auth::user()->hasRole ('admin')){
+        // dd($user->id);
+        $data = Transaction::where('branch_id_fk', $user->branch_Id)->with('user')
+       ->orderBy('created_at', 'desc')
+       ->get();
+
+
+        
+        return view('admin.transaction.view_transcation_history', compact('data'));
+        }
