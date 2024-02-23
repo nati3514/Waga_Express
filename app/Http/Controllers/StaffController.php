@@ -33,3 +33,11 @@ public function index()
         $data = User::where('branch_Id',$user->branch_Id)->whereIn('status', ['active', 'deactive'])->role('cashier')->get();
         return view('admin.staff.view_all_staff',compact('data'));  
     }
+ public function create()
+    {
+        $user = Auth::user();
+        $branch = User::join('branches','branches.id','=','users.branch_Id')
+        ->where('users.id',$user->id)
+        ->first();
+    return view('admin.staff.create_staff', compact('branch'));  
+    }
