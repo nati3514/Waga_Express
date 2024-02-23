@@ -92,3 +92,15 @@ public function edit(string $id)
         ]);
         return redirect(route('staff.index'))->with('success', 'Updated successfully');
     }
+public function limit(Request $request, string $id){
+        $request->validate([
+            'amount_limit' => 'required'
+        ]);
+        User::where('id', $id)->update([
+            'amount_limit' => $request->amount_limit,
+        ]);
+        $user = User::where('id', $id)->first();
+        Notification::send($user, new staffNotification($request->amount_limit,$user->first_name,$user->last_name));
+        return redirect(route('staff.index'))->with('success', 'successfully updated');
+
+    }
