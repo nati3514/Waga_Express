@@ -104,3 +104,9 @@ public function limit(Request $request, string $id){
         return redirect(route('staff.index'))->with('success', 'successfully updated');
 
     }
+public function markasread($id){
+        if($id){
+            Auth::user()->unreadNotifications->where('id',$id)->markAsRead();
+        }
+        return back();
+    }
