@@ -150,3 +150,8 @@ public function profile()
         ->first();
         return view('admin.profile')->with('user_data', $data);
     }
+ public function fallback()
+    {
+        return view('admin.fallback');
+    }
+}
