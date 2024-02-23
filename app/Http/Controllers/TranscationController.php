@@ -70,3 +70,12 @@ $data2 = ModelsUser::where('branch_Id', $user->branch_Id)
             }
             
     } 
+public function index()
+    {
+        $user = Auth::user();
+        
+        $data = StaffTransaction::join('branches', 'branches.id', '=', 'staff_transactions.branch_id')
+        ->where('staff_transactions.branch_id', $user->branch_Id)
+        ->get();
+        return view('admin.transaction.view_transcation',compact('data'));
+    }
