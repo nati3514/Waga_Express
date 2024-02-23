@@ -121,3 +121,24 @@ class HomeController extends Controller
                 $countPackages = $countCollectedPackages + $countReceivedPackages;
                     // dd($countPackages);
             }
+}
+            $countDeliveredPackages = Package::where('to_branch_id', $data->branch_Id)
+             ->where(function ($query) use ($user) {
+                 $query->orWhere('to_branch_id', $user->branch_Id);
+             })
+             ->where('status', 'delivered')
+             ->count();
+             $totalCountPackages = Package::where('from_branch_id', $data->branch_Id)
+             ->where(function ($query) use ($user) {
+                 $query->orWhere('from_branch_id', $user->branch_Id);
+             })
+             ->count();
+            // dd($countCollectedPackages);
+        return view('admin.dashboard')->with('user_data', $data)
+        ->with('count_collected_packages', $countPackages)
+        ->with('count_delivered_packages', $countDeliveredPackages)
+        ->with('total_packages', $totalCountPackages)
+        ->with('total_price', $totalPrice)
+        ->with('Leatest_Trancation', $leatestTrancation);
+        
+    }
