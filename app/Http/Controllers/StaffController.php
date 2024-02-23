@@ -41,3 +41,26 @@ public function index()
         ->first();
     return view('admin.staff.create_staff', compact('branch'));  
     }
+public function store(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'from_branch' => 'required',
+            'email' => 'required|email|unique:users,email|max:50',
+            'password' => 'required',
+            'amount_limit' => 'required',
+            'status' => 'required|in:active,deactive', 
+        ]);
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'branch_Id' => $request->from_branch,
+            'email' => $request->email,
+            'status' => $request->status,
+            'password' => bcrypt($request->password),
+            'amount_limit' => $request->amount_limit,
+        ]);
+        $user->syncRoles('cashier');
+        return redirect(route('staff.index'))->with('success', 'Staff successfully added');
+    }
