@@ -142,3 +142,11 @@ class HomeController extends Controller
         ->with('Leatest_Trancation', $leatestTrancation);
         
     }
+public function profile()
+    {
+        $user = Auth::user();
+        $data = User::join('branches','branches.id','=','users.branch_Id')
+        ->where('users.id',$user->id)
+        ->first();
+        return view('admin.profile')->with('user_data', $data);
+    }
