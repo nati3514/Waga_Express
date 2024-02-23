@@ -27,3 +27,9 @@ class StaffController extends Controller
         
     }
     
+public function index()
+    {
+        $user = Auth::user();
+        $data = User::where('branch_Id',$user->branch_Id)->whereIn('status', ['active', 'deactive'])->role('cashier')->get();
+        return view('admin.staff.view_all_staff',compact('data'));  
+    }
