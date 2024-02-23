@@ -103,3 +103,7 @@ If(Auth::user()->hasRole ('cashier')){
             return view('admin.transaction.view_transcation_history', compact('data'));
         }
     }
+public function create()
+    {
+        //
+    }
