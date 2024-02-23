@@ -72,3 +72,23 @@ public function edit(string $id)
     {
         //
     }
+ public function update(Request $request, string $id)
+    {
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id.'|max:50',
+            'password' => 'required',
+            'amount_limit' => 'required',
+            'status' => 'required|in:active,deactive',
+        ]);
+        User::where('id', $id)->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'amount_limit' => $request->amount_limit,
+            'status' => $request->status,
+        ]);
+        return redirect(route('staff.index'))->with('success', 'Updated successfully');
+    }
