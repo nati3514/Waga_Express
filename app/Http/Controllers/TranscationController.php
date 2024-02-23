@@ -48,3 +48,25 @@ class TranscationController extends Controller
     //     ->with('user')
     //    ->orderBy('created_at', 'desc')
     //    ->get();
+$data2 = ModelsUser::where('branch_Id', $user->branch_Id)
+    ->where('status', 'active')
+    ->get();
+    return view('admin.transaction.report', compact('data','data2'));
+        }
+        If(Auth::user()->hasRole ('cashier')){
+            // dd($user->id);
+            $data = Transaction::where('user_id_fk', $request->user)
+            ->whereBetween('created_at', [ $fromDate,  $toDate])
+            ->with('user')
+           ->orderBy('created_at', 'desc')
+           ->get(); 
+
+
+           $data2 = ModelsUser::where('id', $user->id)
+           ->where('status', 'active')
+           ->first();
+           return view('admin.transaction.report', compact('data','data2'));
+
+            }
+            
+    } 
