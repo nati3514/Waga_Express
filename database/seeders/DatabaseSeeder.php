@@ -28,10 +28,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
            
-               ,
-                'started_date' => '2020-10-01',
-                'branch_name' => 'Addis Ababa Branch',
-            ]);
+            
             branch::create([
                 'street' => 'poly',
                 'city' => 'Bahir Dar',
