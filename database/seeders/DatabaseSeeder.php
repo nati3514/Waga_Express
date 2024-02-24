@@ -33,10 +33,7 @@ class DatabaseSeeder extends Seeder
            
               
 
-            branch::create([
-                'street' => 'poly',
-                'city' => 'Hawassa',
-                'state' => 'Amhara',
+          
                 'country' => 'Ethiopia',
                 'contact' => '+25166941',
                 'Tot_package' => '10',
