@@ -27,12 +27,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-            branch::create([
-                'street' => '22 mazoria',
-                'city' => 'Addis Ababa',
-                'state' => 'Addis Ababa',
-                'country' => 'Ethiopia',
-                'contact' => '+251955959',
+           
                 'Tot_package' => '10',
                 'balance' => 10000,
                 'Tot_commission' => 200,
