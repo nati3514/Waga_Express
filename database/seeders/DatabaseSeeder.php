@@ -32,9 +32,7 @@ class DatabaseSeeder extends Seeder
             
                 
                 
-               
-                'branch_name' => 'Bahir Dar Branch',
-            ]);
+            
             branch::create([
                 'street' => 'poly',
                 'city' => 'Gonder',
