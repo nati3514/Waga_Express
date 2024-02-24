@@ -36,10 +36,6 @@ class DatabaseSeeder extends Seeder
           
               
           
-                'state' => 'Amhara',
-                'country' => 'Ethiopia',
-                'contact' => '+25166941',
-                'Tot_package' => '10',
                 'balance' => 40000,
                 'Tot_commission' => 200,
                 'email' => 'branch2@gmail.com',
