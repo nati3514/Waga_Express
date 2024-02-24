@@ -29,9 +29,7 @@ class DatabaseSeeder extends Seeder
         // ]);
            
             
-            branch::create([
-                'street' => 'poly',
-                'city' => 'Bahir Dar',
+            
                 'state' => 'Amhara',
                 'country' => 'Ethiopia',
                 'contact' => '+25166941',
