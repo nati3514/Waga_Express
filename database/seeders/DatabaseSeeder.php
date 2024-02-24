@@ -30,8 +30,7 @@ class DatabaseSeeder extends Seeder
            
             
             
-                'state' => 'Amhara',
-                'country' => 'Ethiopia',
+                
                 'contact' => '+25166941',
                 'Tot_package' => '20',
                 'balance' => 20000,
