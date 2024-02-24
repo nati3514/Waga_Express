@@ -28,10 +28,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
            
-                'Tot_package' => '10',
-                'balance' => 10000,
-                'Tot_commission' => 200,
-                'email' => 'branch1@gmail.com',
+               ,
                 'started_date' => '2020-10-01',
                 'branch_name' => 'Addis Ababa Branch',
             ]);
