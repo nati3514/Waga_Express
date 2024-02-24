@@ -37,8 +37,7 @@ class DatabaseSeeder extends Seeder
               
           
               
-                'branch_name' => 'Kombolcha Branch',
-            ]);
+          
             branch::create([
                 'street' => 'poly',
                 'city' => 'Bonga',
