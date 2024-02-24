@@ -34,11 +34,7 @@ class DatabaseSeeder extends Seeder
               
 
           
-                
               
-                'started_date' => '2021-05-09',
-                'branch_name' => 'Hawassa Branch',
-            ]);
             branch::create([
                 'street' => 'poly',
                 'city' => 'Kombolcha',
