@@ -35,8 +35,7 @@ class DatabaseSeeder extends Seeder
 
           
                 
-                'Tot_commission' => 200,
-                'email' => 'branch2@gmail.com',
+              
                 'started_date' => '2021-05-09',
                 'branch_name' => 'Hawassa Branch',
             ]);
