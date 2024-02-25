@@ -8,8 +8,7 @@
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="team-item">
                     
-                        <img class="img-fluid w-100" src="{{ asset('frontend/assets/img/team-2.jpg') }}" alt="">
-                        <div class="team-social">
+                        
                             <a class="btn btn-square btn-light mx-1" href=""><i
                                     class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-twitter"></i></a>
