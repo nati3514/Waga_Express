@@ -9,10 +9,7 @@
             
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="team-item">
-                    <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="{{ asset('frontend/assets/img/team-4.jpg') }}" alt="">
-                        
-                    </div>
+                    
                     
                 </div>
             </div>
