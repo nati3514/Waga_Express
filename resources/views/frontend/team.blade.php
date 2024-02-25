@@ -13,10 +13,7 @@
                         <img class="img-fluid w-100" src="{{ asset('frontend/assets/img/team-4.jpg') }}" alt="">
                         
                     </div>
-                    <div class="text-center p-4">
-                        <h5 class="mb-1">nati</h5>
-                        <span>backend developer</span>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
