@@ -11,8 +11,7 @@
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                 <div class="team-item">
                     <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="{{ asset('frontend/assets/img/team-5.jpg') }}"
-                            alt="">
+                        
                         <div class="team-social">
                             <a class="btn btn-square btn-light mx-1" href=""><i
                                     class="fab fa-facebook-f"></i></a>
