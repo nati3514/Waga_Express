@@ -8,11 +8,7 @@
             
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item">
-                    <div class="position-relative overflow-hidden">
-                        
-                            
-                        </div>
-                    </div>
+                    
                     <div class="text-center p-4">
                         <h5 class="mb-1">nati</h5>
                         <span>frontend developer</span>
