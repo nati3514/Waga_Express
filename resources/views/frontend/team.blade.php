@@ -9,13 +9,7 @@
                 <div class="team-item">
                     
                         
-                            <a class="btn btn-square btn-light mx-1" href=""><i
-                                    class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-light mx-1" href=""><i
-                                    class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-youtube"></i></a>
-                        </div>
+                            
                     </div>
                     <div class="text-center p-4">
                         <h5 class="mb-1">Nati Age</h5>
