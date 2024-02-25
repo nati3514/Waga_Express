@@ -11,14 +11,7 @@
                 <div class="team-item">
                     <div class="position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="{{ asset('frontend/assets/img/team-4.jpg') }}" alt="">
-                        <div class="team-social">
-                            <a class="btn btn-square btn-light mx-1" href=""><i
-                                    class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-light mx-1" href=""><i
-                                    class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-youtube"></i></a>
-                        </div>
+                        
                     </div>
                     <div class="text-center p-4">
                         <h5 class="mb-1">nati</h5>
