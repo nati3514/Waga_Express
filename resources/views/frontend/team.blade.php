@@ -1,9 +1,7 @@
 <div class="container-fluid container-team py-5" id="team">
     <div class="container pb-5">
         <div class="row g-5 align-items-center mb-5">
-            <div class="col-md-6 wow fadeIn" data-wow-delay="0.3s">
-                <img class="img-fluid w-100" src="{{ asset('frontend/assets/img/model.webp') }}" alt="">
-            </div>
+            
             <div class="col-md-6 wow fadeIn" data-wow-delay="0.5s">
                 <h1 class="display-6 mb-3">Mr. Dagmawi Fitsum</h1>
                 <p class="mb-1">CEO & Founder</p>
