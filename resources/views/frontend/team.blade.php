@@ -2,11 +2,7 @@
     <div class="container pb-5">
         
             
-            <div class="col-md-6 wow fadeIn" data-wow-delay="0.5s">
-                
-                    
-                </div>
-            </div>
+            
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
