@@ -6,11 +6,7 @@
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item">
-                    
-                        
-                            
-                    </div>
+                
                     <div class="text-center p-4">
                         <h5 class="mb-1">Nati Age</h5>
                         <span>Programmer</span>
