@@ -4,10 +4,7 @@
             
             <div class="col-md-6 wow fadeIn" data-wow-delay="0.5s">
                 
-                    <a class="btn btn-lg-square btn-primary me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-lg-square btn-primary me-2" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-lg-square btn-primary me-2" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-lg-square btn-primary me-2" href=""><i class="fab fa-youtube"></i></a>
+                    
                 </div>
             </div>
         </div>
