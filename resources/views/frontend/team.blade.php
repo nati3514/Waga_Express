@@ -6,12 +6,7 @@
         </div>
         <div class="row g-4">
             
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="team-item">
-                    
-                    
-                </div>
-            </div>
+            
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="team-item">
                     <div class="position-relative overflow-hidden">
