@@ -12,7 +12,7 @@
             <div class="d-flex">
                 <i class="bi bi-envelope fs-2"></i>
                 <div class="ms-3">
-                    <h5 class="text-white mb-0">Mail Now</h5>
+                    
                    
                 </div>
             </div>
