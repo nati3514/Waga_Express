@@ -8,7 +8,7 @@
                     <span>+251 9866 4047</span>
                 </div>
             </div>
-            <a href="index.html" class="h1 text-white mb-0">Waga<span class="text-dark">Express</span></a>
+            
             
         </div>
     </div>
