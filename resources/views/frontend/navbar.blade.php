@@ -19,7 +19,7 @@
                             <a href="#appointment" class="dropdown-item">Appoinment</a>
                             <a href="#team" class="dropdown-item">Our Team</a>
                             <a href="#testimonial" class="dropdown-item">Testimonial</a>
-                            <a href="#404" class="dropdown-item">404 Page</a>
+                        
                         </div>
                     </div>
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
