@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content rounded-0">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Youtube Video</h3>
+                
                 
             </div>
            
