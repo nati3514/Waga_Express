@@ -18,7 +18,7 @@
                             <a href="#services" class="dropdown-item">Services</a>
                             <a href="#appointment" class="dropdown-item">Appoinment</a>
                             <a href="#team" class="dropdown-item">Our Team</a>
-                            <a href="#testimonial" class="dropdown-item">Testimonial</a>
+                           
                         
                         </div>
                     </div>
