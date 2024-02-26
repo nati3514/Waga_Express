@@ -11,10 +11,7 @@
             <a href="index.html" class="h1 text-white mb-0">Waga<span class="text-dark">Express</span></a>
             <div class="d-flex">
                 <i class="bi bi-envelope fs-2"></i>
-                <div class="ms-3">
-                    
-                   
-                </div>
+                
             </div>
         </div>
     </div>
