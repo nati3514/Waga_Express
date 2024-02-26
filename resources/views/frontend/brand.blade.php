@@ -4,7 +4,7 @@
             <div class="d-flex">
                 <i class="bi bi-telephone-inbound fs-2"></i>
                 <div class="ms-3">
-                    <h5 class="text-white mb-0">Call Now</h5>
+                    
                     <span>+251 9866 4047</span>
                 </div>
             </div>
