@@ -7,9 +7,7 @@
             </div>
             <div class="modal-body">
                 <!-- 16:9 aspect ratio -->
-                <div class="ratio ratio-16x9">
-                  
-                </div>
+                
             </div>
         </div>
     </div>
