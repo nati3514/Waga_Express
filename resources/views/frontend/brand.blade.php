@@ -5,7 +5,7 @@
                 <i class="bi bi-telephone-inbound fs-2"></i>
                 <div class="ms-3">
                     
-                    <span>+251 9866 4047</span>
+                   
                 </div>
             </div>
             
