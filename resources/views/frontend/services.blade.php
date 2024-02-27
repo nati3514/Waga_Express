@@ -8,7 +8,7 @@
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="service-item">
                     <div class="icon-box-primary mb-4">
-                        <i class="bi bi-heart-pulse text-dark"></i>
+                     
                     </div>
                    
                    
