@@ -9,7 +9,7 @@
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="service-item">
                     
-                    <h4 class="mb-3">Secure Packaging</h4>
+                   
                     <p class="mb-4">Trust in our meticulous Secure Packaging service, designed to safeguard your items throughout their journey, providing a layer of protection that goes beyond expectations.</p>
                     <a class="btn btn-light px-3" href="">Read More<i
                             class="bi bi-chevron-double-right ms-1"></i></a>
