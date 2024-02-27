@@ -10,7 +10,7 @@
                     <div class="icon-box-primary mb-4">
                         <i class="bi bi-heart-pulse text-dark"></i>
                     </div>
-                    <h4 class="mb-3">Express Delivery</h4>
+                   
                    
                    
                 </div>
