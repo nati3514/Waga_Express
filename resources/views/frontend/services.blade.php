@@ -14,8 +14,7 @@
                     </div>
                   
                    
-                    <a class="btn btn-light px-3" href="">Read More<i
-                            class="bi bi-chevron-double-right ms-1"></i></a>
+                  
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
