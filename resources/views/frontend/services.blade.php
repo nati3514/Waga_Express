@@ -6,9 +6,7 @@
         </div>
         <div class="row g-4">
            
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                
-            </div>
+           
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="service-item">
                     <div class="icon-box-primary mb-4">
