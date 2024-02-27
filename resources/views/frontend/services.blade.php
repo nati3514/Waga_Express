@@ -11,7 +11,7 @@
                         <i class="bi bi-heart-pulse text-dark"></i>
                     </div>
                     <h4 class="mb-3">Express Delivery</h4>
-                    <p class="mb-4">Our Express Delivery service guarantees swift and timely shipments, ensuring your packages reach their destination with speed and precision.</p>
+                   
                     <a class="btn btn-light px-3" href="">Read More<i
                             class="bi bi-chevron-double-right ms-1"></i></a>
                 </div>
