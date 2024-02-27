@@ -13,7 +13,7 @@
                         <i class="bi bi-virus text-dark"></i>
                     </div>
                   
-                    <p class="mb-4">Expand your horizons with our State Shipping service, connecting you to the world and ensuring your packages travel seamlessly across borders with efficiency and care..</p>
+                   
                     <a class="btn btn-light px-3" href="">Read More<i
                             class="bi bi-chevron-double-right ms-1"></i></a>
                 </div>
