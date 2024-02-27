@@ -10,7 +10,7 @@
                 <div class="service-item">
                     
                    
-                    <p class="mb-4">Trust in our meticulous Secure Packaging service, designed to safeguard your items throughout their journey, providing a layer of protection that goes beyond expectations.</p>
+                   
                     <a class="btn btn-light px-3" href="">Read More<i
                             class="bi bi-chevron-double-right ms-1"></i></a>
                 </div>
