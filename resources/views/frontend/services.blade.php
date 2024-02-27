@@ -5,9 +5,7 @@
             <p class="mb-5">Experience a Reliable & High-Quality Postal Service that ensures timely deliveries and secure handling of your packages, providing peace of mind with every shipment.</p>
         </div>
         <div class="row g-4">
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                
-            </div>
+           
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="service-item">
                     <div class="icon-box-primary mb-4">
