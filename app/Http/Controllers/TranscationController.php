@@ -23,8 +23,7 @@ class TranscationController extends Controller
      public function reports(Request $request){
 
         $user = Auth::user();
-    //     $usersWithSameBranch = User::where('branch_id', $user->branch_Id)
-    // ->get(['first_name']);
+    
 
 
     //     dd($usersWithSameBranch);
