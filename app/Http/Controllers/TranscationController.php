@@ -42,11 +42,7 @@ $data2 = ModelsUser::where('branch_Id', $user->branch_Id)
         }
         If(Auth::user()->hasRole ('cashier')){
             // dd($user->id);
-            $data = Transaction::where('user_id_fk', $request->user)
-            ->whereBetween('created_at', [ $fromDate,  $toDate])
-            ->with('user')
-           ->orderBy('created_at', 'desc')
-           ->get(); 
+             
 
 
            
