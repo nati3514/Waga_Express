@@ -28,9 +28,7 @@ class TranscationController extends Controller
 
 
     //     dd($usersWithSameBranch);
-// ->where('id','<>',$user->id)
-            $fromDate = Carbon::parse($request->from);
-            $toDate = Carbon::parse($request->to)->endOfDay();
+// ->where('id
 
         If(Auth::user()->hasRole ('admin')){
         // dd($user->id);
