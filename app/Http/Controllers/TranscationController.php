@@ -31,10 +31,7 @@ class TranscationController extends Controller
 
         If(Auth::user()->hasRole ('admin')){
         // dd($user->id);
-        $data = Transaction::where('branch_id_fk', $user->branch_Id)->when($request->select_user != null, 
-        function ($query) use ($request){
-            return $query->where('user_id_fk', $request->select_user);
-        })
+        
         ->whereBetween('created_at', [ $fromDate,  $toDate])
         ->with('user')
        ->orderBy('created_at', 'desc')
