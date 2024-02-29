@@ -5,7 +5,7 @@
                 <div class="bg-white p-5 mt-lg-5">
                     <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.3s">Secure, Safe, and Sound</h1>
                     
-                        {{-- <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                        
                             <div class="icon-box-primary mb-4">
                                 <i class="bi bi-person-plus text-dark"></i>
                             </div>
