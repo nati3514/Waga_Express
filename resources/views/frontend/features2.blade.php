@@ -3,10 +3,7 @@
         <div class="row g-0">
             <div class="col-lg-6 pt-lg-5">
                 
-                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.4s">
-                            
-                            
-                        </div> --}}
+                        
                     </div>
                     <a class="btn btn-primary py-3 px-5 wow fadeIn" data-wow-delay="0.5s" href="">Explore
                         More</a>
