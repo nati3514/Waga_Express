@@ -4,8 +4,7 @@
             <div class="col-lg-6 pt-lg-5">
                 <div class="bg-white p-5 mt-lg-5">
                     <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.3s">Secure, Safe, and Sound</h1>
-                    <p class="mb-4 wow fadeIn" data-wow-delay="0.4s">Security is our top priority. wagaDHL employs state-of-the-art security measures to ensure your shipments are protected from origin to destination. Experience peace of mind with every delivery.</p>
-                    <div class="row g-5 pt-2 mb-5">
+                    
                         {{-- <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
                             <div class="icon-box-primary mb-4">
                                 <i class="bi bi-person-plus text-dark"></i>
