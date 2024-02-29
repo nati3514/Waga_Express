@@ -32,10 +32,7 @@ class TranscationController extends Controller
         If(Auth::user()->hasRole ('admin')){
         // dd($user->id);
         
-        ->whereBetween('created_at', [ $fromDate,  $toDate])
-        ->with('user')
-       ->orderBy('created_at', 'desc')
-       ->get();
+        
         
        
 $data2 = ModelsUser::where('branch_Id', $user->branch_Id)
