@@ -40,11 +40,7 @@ class TranscationController extends Controller
        ->orderBy('created_at', 'desc')
        ->get();
         
-       //     $data = Transaction::where('branch_id_fk', $user->branch_Id)->where('user_id_fk', $request->select_user)
-    //     ->whereBetween('created_at', [ $fromDate,  $toDate])
-    //     ->with('user')
-    //    ->orderBy('created_at', 'desc')
-    //    ->get();
+       
 $data2 = ModelsUser::where('branch_Id', $user->branch_Id)
     ->where('status', 'active')
     ->get();
