@@ -55,9 +55,7 @@ $data2 = ModelsUser::where('branch_Id', $user->branch_Id)
            ->get(); 
 
 
-           $data2 = ModelsUser::where('id', $user->id)
-           ->where('status', 'active')
-           ->first();
+           
            return view('admin.transaction.report', compact('data','data2'));
 
             }
