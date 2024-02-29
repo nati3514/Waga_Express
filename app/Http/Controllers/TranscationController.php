@@ -35,9 +35,7 @@ class TranscationController extends Controller
         
         
        
-$data2 = ModelsUser::where('branch_Id', $user->branch_Id)
-    ->where('status', 'active')
-    ->get();
+
     return view('admin.transaction.report', compact('data','data2'));
         }
         If(Auth::user()->hasRole ('cashier')){
