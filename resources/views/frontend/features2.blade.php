@@ -8,7 +8,6 @@
                         
                             
                             
-                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
                         </div>
                         <div class="col-sm-6 wow fadeIn" data-wow-delay="0.4s">
                             <div class="icon-box-primary mb-4">
