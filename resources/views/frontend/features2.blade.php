@@ -6,9 +6,7 @@
                     <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.3s">Secure, Safe, and Sound</h1>
                     
                         
-                            <div class="icon-box-primary mb-4">
-                                <i class="bi bi-person-plus text-dark"></i>
-                            </div>
+                            
                             <h5 class="mb-3">Experience Doctors</h5>
                             <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
                         </div>
