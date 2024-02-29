@@ -7,8 +7,7 @@
                             <div class="icon-box-primary mb-4">
                                 <i class="bi bi-check-all text-dark"></i>
                             </div>
-                            <h5 class="mb-3">Advanced Microscopy</h5>
-                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                            
                         </div> --}}
                     </div>
                     <a class="btn btn-primary py-3 px-5 wow fadeIn" data-wow-delay="0.5s" href="">Explore
