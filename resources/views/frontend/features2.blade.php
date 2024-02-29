@@ -5,7 +5,7 @@
                 
                         <div class="col-sm-6 wow fadeIn" data-wow-delay="0.4s">
                             <div class="icon-box-primary mb-4">
-                                <i class="bi bi-check-all text-dark"></i>
+                                
                             </div>
                             
                         </div> --}}
