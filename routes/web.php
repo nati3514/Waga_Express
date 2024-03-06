@@ -43,7 +43,7 @@ Route::patch('/customer/update/{id}', [App\Http\Controllers\ProductController::c
 Route::get('/fetchRate',[App\Http\Controllers\ProductController::class, 'fetchRate']);
 Route::get('/fetchPrice',[App\Http\Controllers\ProductController::class, 'fetchPrice']);
 
-Route::delete('/customer/delete/{id}',[App\Http\Controllers\ProductController::class, 'destroy'])->name('delete_customer');
+
 
 Route::get('/Staff/staff-list', [App\Http\Controllers\StaffController::class, 'index'])->name('staff.index');
 Route::get('/Staff/add-staff', [App\Http\Controllers\StaffController::class, 'create'])->name('staff.create');
