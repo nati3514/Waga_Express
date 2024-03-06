@@ -46,7 +46,7 @@ class HomeController extends Controller
                     $query->where('branch_id_fk', $dataId)
                           ->orWhere('branch_id_fk', $user->branch_Id);
                     })
-                    ->whereDate('created_at', $currentDate)
+                    
                     
                            
                 // dd($totalPrice);
