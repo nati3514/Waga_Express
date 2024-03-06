@@ -72,5 +72,4 @@ Route::patch('/Staff/limit/{id}', [App\Http\Controllers\StaffController::class, 
 
 Route::get('/markasread/{id}',[StaffController::class, 'markasread'])->name('markasread');
 
-Route::get('/fallback', [App\Http\Controllers\HomeController::class, 'fallback'])->name('fallback');
-});
+
