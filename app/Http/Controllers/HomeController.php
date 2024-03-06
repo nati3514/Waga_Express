@@ -47,7 +47,7 @@ class HomeController extends Controller
                           ->orWhere('branch_id_fk', $user->branch_Id);
                     })
                     ->whereDate('created_at', $currentDate)
-                    ->where('status', 'collected')
+                    
                            
                 // dd($totalPrice);
                 $countCollectedPackages = Package::where('from_branch_id', $data->branch_Id)
