@@ -42,10 +42,7 @@ class HomeController extends Controller
 
                 
 
-                $totalPrice = Transaction::where(function ($query) use ($user, $dataId) {
-                    $query->where('branch_id_fk', $dataId)
-                          ->orWhere('branch_id_fk', $user->branch_Id);
-                    })
+                
                     
                     
                            
