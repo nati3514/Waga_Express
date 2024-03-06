@@ -37,7 +37,7 @@ class HomeController extends Controller
             
         If(Auth::user()->hasRole ('admin')) {
             if ($data) {
-                $dataId = $data->id;
+                
 
 
                 $currentDate = Carbon::now()->format('Y-m-d');
