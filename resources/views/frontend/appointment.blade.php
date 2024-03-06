@@ -12,10 +12,7 @@
                     <div class="icon-box-primary">
                         <i class="bi bi-geo-alt text-dark fs-1"></i>
                     </div>
-                    <div class="ms-3">
-                        <h5>Office Address</h5>
-                        <span>123 Street, New York, USA</span>
-                    </div>
+                    
                 </div>
                 <hr>
                 <div class="d-flex align-items-start wow fadeIn" data-wow-delay="0.4s">
