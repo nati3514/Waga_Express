@@ -52,7 +52,7 @@ class HomeController extends Controller
                         $query->orWhere('from_branch_id', $user->branch_Id);
                     })
                     ->where('status', 'collected')
-                    ->count();
+                    
                 $countReceivedPackages = Package::where('to_branch_id', $data->branch_Id)
                     ->where(function ($query) use ($user) {
                         $query->orWhere('to_branch_id', $user->branch_Id);
