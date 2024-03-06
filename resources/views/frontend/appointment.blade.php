@@ -8,10 +8,7 @@
                 
                 <div class="d-flex align-items-start wow fadeIn" data-wow-delay="0.4s">
                     
-                    <div class="ms-3">
-                        <h5>Office Time</h5>
-                        <span>Mon-Sat 09am-5pm, Sun Closed</span>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
