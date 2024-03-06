@@ -9,9 +9,7 @@
                 <p>We guarantee the best service at every step. From our dedicated team to meticulously crafted processes, we prioritize excellence, ensuring your satisfaction is not just met but exceeded. Your trust is our commitment to delivering unparalleled service, where your unique needs are met with passion and precision.</p>
                 <p class="mb-4">Count on us for top-notch service, where excellence is our commitment. Your satisfaction is our priority, ensuring you always receive the best.</p>
                 <div class="d-flex align-items-start wow fadeIn" data-wow-delay="0.3s">
-                    <div class="icon-box-primary">
-                        <i class="bi bi-geo-alt text-dark fs-1"></i>
-                    </div>
+                    
                     
                 </div>
                 <hr>
