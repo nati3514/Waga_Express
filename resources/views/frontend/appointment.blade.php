@@ -6,10 +6,7 @@
         <div class="row g-5">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                 
-                <div class="d-flex align-items-start wow fadeIn" data-wow-delay="0.4s">
-                    
-                    
-                </div>
+                
             </div>
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                 <h2 class="mb-4">Online Appoinment</h2>
