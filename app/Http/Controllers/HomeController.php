@@ -48,7 +48,7 @@ class HomeController extends Controller
                     })
                     ->whereDate('created_at', $currentDate)
                     ->where('status', 'collected')
-                    ->sum('price');       
+                           
                 // dd($totalPrice);
                 $countCollectedPackages = Package::where('from_branch_id', $data->branch_Id)
                     ->where(function ($query) use ($user) {
