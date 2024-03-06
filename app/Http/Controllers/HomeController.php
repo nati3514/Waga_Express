@@ -50,10 +50,7 @@ class HomeController extends Controller
                 
                     
                     
-                $countReceivedPackages = Package::where('to_branch_id', $data->branch_Id)
-                    ->where(function ($query) use ($user) {
-                        $query->orWhere('to_branch_id', $user->branch_Id);
-                    })
+                
                     
 
                 $countPackages = $countCollectedPackages + $countReceivedPackages;
