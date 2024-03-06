@@ -54,8 +54,7 @@ class HomeController extends Controller
                     ->where(function ($query) use ($user) {
                         $query->orWhere('to_branch_id', $user->branch_Id);
                     })
-                    ->where('status', 'received')
-                    ->count();
+                    
 
                 $countPackages = $countCollectedPackages + $countReceivedPackages;
                     // dd($countPackages);
