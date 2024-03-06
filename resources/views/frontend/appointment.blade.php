@@ -5,11 +5,7 @@
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="display-6 mb-4 text-capitalize">We Ensure You Will Always Get The Best service</h1>
-                <p>We guarantee the best service at every step. From our dedicated team to meticulously crafted processes, we prioritize excellence, ensuring your satisfaction is not just met but exceeded. Your trust is our commitment to delivering unparalleled service, where your unique needs are met with passion and precision.</p>
-                <p class="mb-4">Count on us for top-notch service, where excellence is our commitment. Your satisfaction is our priority, ensuring you always receive the best.</p>
                 
-                <hr>
                 <div class="d-flex align-items-start wow fadeIn" data-wow-delay="0.4s">
                     <div class="icon-box-primary">
                         <i class="bi bi-clock text-dark fs-1"></i>
