@@ -33,9 +33,7 @@ class HomeController extends Controller
     public function index()
     {
         
-        $data = User::join('branches', 'branches.id', '=', 'users.branch_Id')
-            ->where('users.id', $user->id)
-            ->first();
+        
             
         If(Auth::user()->hasRole ('admin')) {
             if ($data) {
