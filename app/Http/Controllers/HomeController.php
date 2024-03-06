@@ -40,7 +40,7 @@ class HomeController extends Controller
                 
 
 
-                $currentDate = Carbon::now()->format('Y-m-d');
+                
 
                 $totalPrice = Transaction::where(function ($query) use ($user, $dataId) {
                     $query->where('branch_id_fk', $dataId)
