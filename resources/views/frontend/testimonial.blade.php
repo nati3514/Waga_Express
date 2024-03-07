@@ -13,7 +13,7 @@
                             <div class="icon-box-primary mb-4">
                                 <i class="bi bi-chat-left-quote text-dark"></i>
                             </div>
-                            <p class="fs-5 mb-4">I am consistently impressed by the exceptional service provided by WagaDHL. Their commitment to reliability and timely deliveries has made them my trusted shipping partner. The attention to customer happiness is evident in every interaction, making WagaDHL not just a service but a delightful experience. Kudos to the team for consistently exceeding expectations!
+                            
                             </p>
                             <div class="d-flex align-items-center">
                                 <img class="flex-shrink-0" src="{{ asset('frontend/assets/img/testimonial-1.jpg') }}"
