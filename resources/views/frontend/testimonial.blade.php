@@ -17,7 +17,7 @@
                              
                                 <div class="ps-3">
                                     <h5 class="mb-1">Beti</h5>
-                                    <span class="text-primary">Manager of CBE</span>
+                                  
                                 </div>
                             </div>
                         </div>
