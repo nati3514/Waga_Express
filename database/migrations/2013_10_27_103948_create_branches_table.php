@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('contact');
             $table->string('Tot_Package');
-            $table->float('balance');
+            
             
             
             
