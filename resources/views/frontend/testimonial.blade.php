@@ -14,8 +14,7 @@
                             
                             </p>
                             <div class="d-flex align-items-center">
-                                <img class="flex-shrink-0" src="{{ asset('frontend/assets/img/testimonial-1.jpg') }}"
-                                    alt="">
+                             
                                 <div class="ps-3">
                                     <h5 class="mb-1">Beti</h5>
                                     <span class="text-primary">Manager of CBE</span>
