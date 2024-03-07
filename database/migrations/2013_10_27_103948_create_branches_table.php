@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('Tot_Package');
             $table->float('balance');
             $table->integer('Tot_commission');
-            $table->string('email');
+            
             
            
             // $table->string('password');
