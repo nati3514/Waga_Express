@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('Tot_commission');
             $table->string('email');
             $table->date('started_date');
-            $table->string('branch_name');
+           
             // $table->string('password');
             $table->timestamps();
         });
