@@ -22,7 +22,7 @@ return new class extends Migration
             $table->float('balance');
             $table->integer('Tot_commission');
             $table->string('email');
-            $table->date('started_date');
+            
            
             // $table->string('password');
             $table->timestamps();
