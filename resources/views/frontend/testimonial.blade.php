@@ -9,12 +9,7 @@
             <div class="col-lg-6 mb-n5 wow fadeIn" data-wow-delay="0.5s">
                 <div class="bg-white p-5">
                     <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay="0.1s">
-                        <div class="testimonial-item">
-                            
-                            
-                            </p>
-                            
-                        </div>
+                       
                         <div class="testimonial-item">
                            
                             <p class="fs-5 mb-4">WagaExpres has truly set the standard for excellence in shipping. Their attention to detail and commitment to secure packaging give me peace of mind with every shipment. The team's responsiveness and dedication to customer support make them stand out. WagaDHL is a game-changer in the logistics industry!
