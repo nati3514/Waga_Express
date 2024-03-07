@@ -13,9 +13,7 @@
                             
                             
                             </p>
-                            <div class="d-flex align-items-center">
-                             
-                            </div>
+                            
                         </div>
                         <div class="testimonial-item">
                            
