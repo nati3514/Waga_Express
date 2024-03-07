@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('state');
             $table->string('country');
             $table->string('contact');
-            $table->string('Tot_Package');
+            
             
             
             
