@@ -10,9 +10,7 @@
                 <div class="bg-white p-5">
                     <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay="0.1s">
                         <div class="testimonial-item">
-                            <div class="icon-box-primary mb-4">
-                                <i class="bi bi-chat-left-quote text-dark"></i>
-                            </div>
+                            
                             
                             </p>
                             <div class="d-flex align-items-center">
