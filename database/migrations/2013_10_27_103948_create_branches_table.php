@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('contact');
             $table->string('Tot_Package');
             $table->float('balance');
-            $table->integer('Tot_commission');
+            
             
             
            
