@@ -12,7 +12,7 @@ i<div class="container-fluid footer position-relative bg-dark text-white-50 py-5
                 <div class="d-flex mt-4">
                     
                     
-                    <a class="btn btn-lg-square btn-primary me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    
                     <a class="btn btn-lg-square btn-primary me-2" href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
