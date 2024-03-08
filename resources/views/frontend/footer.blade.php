@@ -9,12 +9,7 @@ i<div class="container-fluid footer position-relative bg-dark text-white-50 py-5
                 
                 
                 <p><i class="fa fa-envelope me-2"></i>wagaDHL@express.com</p>
-                <div class="d-flex mt-4">
-                    
-                    
-                    
-                    <a class="btn btn-lg-square btn-primary me-2" href="#"><i class="fab fa-instagram"></i></a>
-                </div>
+                
             </div>
             <div class="col-lg-6 ps-lg-5">
                 <div class="row g-5">
