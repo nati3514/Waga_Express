@@ -21,7 +21,7 @@ i<div class="container-fluid footer position-relative bg-dark text-white-50 py-5
                         
                     </div>
                     <div class="col-sm-6">
-                        <h4 class="text-light mb-4">Popular Links</h4>
+                        
                         <a class="btn btn-link" href="">About Us</a>
                         <a class="btn btn-link" href="">Contact Us</a>
                         <a class="btn btn-link" href="">Our Services</a>
