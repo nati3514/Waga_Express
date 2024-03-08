@@ -8,14 +8,14 @@ i<div class="container-fluid footer position-relative bg-dark text-white-50 py-5
                 
                 
                 
-                <p><i class="fa fa-envelope me-2"></i>wagaDHL@express.com</p>
+                
                 
             </div>
             <div class="col-lg-6 ps-lg-5">
                 <div class="row g-5">
                     <div class="col-sm-6">
                         
-                        <a class="btn btn-link" href="">About Us</a>
+                        
                         <a class="btn btn-link" href="">Contact Us</a>
                         <a class="btn btn-link" href="">Our Services</a>
                         <a class="btn btn-link" href="">Terms & Condition</a>
