@@ -17,7 +17,6 @@ i<div class="container-fluid footer position-relative bg-dark text-white-50 py-5
                         
                         
                         
-                        <a class="btn btn-link" href="">Our Services</a>
                         <a class="btn btn-link" href="">Terms & Condition</a>
                         <a class="btn btn-link" href="">Support</a>
                     </div>
