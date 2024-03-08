@@ -1,4 +1,4 @@
-<div class="container-fluid footer position-relative bg-dark text-white-50 py-5 wow fadeIn" data-wow-delay="0.1s">
+i<div class="container-fluid footer position-relative bg-dark text-white-50 py-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container">
         <div class="row g-5 py-5">
             <div class="col-lg-6 pe-lg-5">
@@ -19,7 +19,7 @@
             <div class="col-lg-6 ps-lg-5">
                 <div class="row g-5">
                     <div class="col-sm-6">
-                        <h4 class="text-light mb-4">Quick Links</h4>
+                        
                         <a class="btn btn-link" href="">About Us</a>
                         <a class="btn btn-link" href="">Contact Us</a>
                         <a class="btn btn-link" href="">Our Services</a>
