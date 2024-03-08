@@ -13,7 +13,7 @@
                         <div class="testimonial-item">
                            
                             </p>
-                            <div class="d-flex align-items-center">
+                            
                                 
                                 <div class="ps-3">
                                     <h5 class="mb-1">Darik</h5>
