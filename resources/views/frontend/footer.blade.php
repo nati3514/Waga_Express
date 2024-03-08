@@ -7,7 +7,7 @@ i<div class="container-fluid footer position-relative bg-dark text-white-50 py-5
                 </a>
                 
                 
-                <p><i class="fa fa-phone-alt me-2"></i>+251 8666 4047</p>
+                
                 <p><i class="fa fa-envelope me-2"></i>wagaDHL@express.com</p>
                 <div class="d-flex mt-4">
                     
