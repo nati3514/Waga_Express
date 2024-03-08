@@ -15,10 +15,7 @@
                             </p>
                             
                                 
-                                <div class="ps-3">
-                                    <h5 class="mb-1">Darik</h5>
-                                    <span class="text-primar">Doctor</span>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
