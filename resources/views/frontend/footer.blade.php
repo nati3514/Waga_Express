@@ -5,7 +5,7 @@ i<div class="container-fluid footer position-relative bg-dark text-white-50 py-5
                 <a href="index.html" class="navbar-brand">
                     <h1 class="h1 text-primary mb-0">Waga<span class="text-white">DHL</span></h1>
                 </a>
-                <p class="fs-5 mb-4">WagaDHL, where precision meets passion, delivering excellence in global shipping with a commitment to customer happiness.</p>
+                
                 <p><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</p>
                 <p><i class="fa fa-phone-alt me-2"></i>+251 8666 4047</p>
                 <p><i class="fa fa-envelope me-2"></i>wagaDHL@express.com</p>
