@@ -7,9 +7,7 @@
                 <a href="" class="btn btn-primary py-3 px-5">More Testimonials</a>
             </div>
             <div class="col-lg-6 mb-n5 wow fadeIn" data-wow-delay="0.5s">
-                <div class="bg-white p-5">
-                    
-                </div>
+                
             </div>
         </div>
     </div>
