@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('status');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreign('branch_Id')->references('id')->on('branches');
+           
             
        
         });
