@@ -11,7 +11,6 @@ class staffNotification extends Notification
 {
     use Queueable;
 
-    public $first_name;
  
     
     /**
