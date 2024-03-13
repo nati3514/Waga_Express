@@ -12,7 +12,7 @@ class staffNotification extends Notification
     use Queueable;
 
     public $first_name;
-    public $last_name;
+ 
     
     /**
      * Create a new notification instance.
