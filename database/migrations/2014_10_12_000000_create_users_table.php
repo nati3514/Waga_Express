@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->foreign('branch_Id')->references('id')->on('branches');
             $table->rememberToken();
-            $table->timestamps();
+       
         });
     }
 
