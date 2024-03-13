@@ -53,7 +53,7 @@ class staffNotification extends Notification
         return [
             'fname' => $this->first_name,
             'mname' => $this->last_name,
-            'limit' => $this->limit,
+          
         ];
     }
 }
