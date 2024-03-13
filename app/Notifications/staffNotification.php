@@ -51,7 +51,7 @@ class staffNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'fname' => $this->first_name,
+            
             
           
         ];
