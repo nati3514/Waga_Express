@@ -10,7 +10,10 @@ use Illuminate\Notifications\Notification;
 class staffNotification extends Notification
 {
     use Queueable;
-    
+
+    public $first_name;
+    public $last_name;
+    public $limit;
     /**
      * Create a new notification instance.
      */
