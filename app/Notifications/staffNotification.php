@@ -18,7 +18,7 @@ class staffNotification extends Notification
      */
     public function __construct($limit, $first_name, $last_name)
     {
-        $this->first_name = $first_name;
+        
        
        
     }
