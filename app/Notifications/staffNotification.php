@@ -13,7 +13,7 @@ class staffNotification extends Notification
 
     public $first_name;
     public $last_name;
-    public $limit;
+    
     /**
      * Create a new notification instance.
      */
