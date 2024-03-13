@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('branch_Id');
             $table->integer('amount_limit');
-            $table->string('first_name');
+           
             
            
             
