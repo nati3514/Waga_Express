@@ -20,7 +20,7 @@ class staffNotification extends Notification
     {
         $this->first_name = $first_name;
         $this->last_name = $last_name;
-        $this->limit = $limit;
+       
     }
     /**
      * Get the notification's delivery channels.
