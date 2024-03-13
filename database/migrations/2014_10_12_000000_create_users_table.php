@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('amount_limit');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('email')->unique();
+           
             
           
            
