@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->foreign('branch_Id')->references('id')->on('branches');
-            $table->rememberToken();
+            
        
         });
     }
