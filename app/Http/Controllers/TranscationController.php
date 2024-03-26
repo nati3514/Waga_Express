@@ -39,11 +39,6 @@ class TranscationController extends Controller
     return view('admin.transaction.report', compact('data','data2'));
         }
         If(Auth::user()->hasRole ('cashier')){
-            // dd($user->id);
-             
-
-
-           
            return view('admin.transaction.report', compact('data','data2'));
 
             }
