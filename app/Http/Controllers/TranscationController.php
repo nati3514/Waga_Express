@@ -62,13 +62,10 @@ public function index()
         return view('admin.transaction.view_transcation_history', compact('data'));
         }
 If(Auth::user()->hasRole ('cashier')){
-            // dd($user->id);
-            $data = Transaction::where('user_id_fk', $user->id)->with('user')
-           ->orderBy('created_at', 'desc')
-           ->get();
-    
-    
             
+            $data = Transacti::where('user_id_fk', $user->id)->with('user')
+           ->orderBy('created_at', 'desc')
+           ->get(
             return view('admin.transaction.view_transcation_history', compact('data'));
         }
     }
